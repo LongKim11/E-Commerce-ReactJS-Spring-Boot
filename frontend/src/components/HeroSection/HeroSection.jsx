@@ -7,7 +7,7 @@ export const HeroSection = () => {
       className="relative flex items-center bg-cover bg-center text-left"
       style={{
         backgroundImage: `url(${HeroSectionImage})`,
-        height: "calc(100vh - 138px)",
+        height: "calc(100vh - 100px)",
       }}
     >
       <main className="px-20 absolute top-36">

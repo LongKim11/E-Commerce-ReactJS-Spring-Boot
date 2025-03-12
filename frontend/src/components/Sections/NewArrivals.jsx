@@ -20,7 +20,7 @@ const items = [
 
 export const NewArrivals = () => {
   return (
-    <div className="mt-20">
+    <div className="my-20">
       <SectionHeading title={"New Arrivals"} />
       <Carousel
         responsive={responsive}
@@ -31,7 +31,7 @@ export const NewArrivals = () => {
         infinite={false}
         partialVisbile={false}
         itemClass={"react-slider-custom-item"}
-        className="mt-10"
+        className="mt-5"
       >
         {items.map((item, index) => (
           <Card key={index} title={item.title} imagePath={item.imagePath} />

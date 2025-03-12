@@ -6,7 +6,7 @@ import { Logo } from "../Common/Logo";
 
 export const Navigation = () => {
   return (
-    <nav className="flex items-center justify-between py-6 px-16 gap-60">
+    <nav className="flex items-center justify-between py-2 px-16 gap-60">
       {/* Logo */}
       <div className="flex items-center gap-6">
         <a href="/">
