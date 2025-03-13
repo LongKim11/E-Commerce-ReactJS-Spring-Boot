@@ -3,33 +3,55 @@ import { Wishlist } from "../Common/Wishlist";
 import { CartIcon } from "../Common/CartIcon";
 import { AccountIcon } from "../Common/AccountIcon";
 import { Logo } from "../Common/Logo";
+import { NavLink } from "react-router-dom";
+import "./Navigation.css";
 
 export const Navigation = () => {
   return (
-    <nav className="flex items-center justify-between py-2 px-16 gap-60">
+    <nav className="flex items-center justify-between py-2 px-16 gap-56">
       {/* Logo */}
       <div className="flex items-center gap-6">
-        <a href="/">
+        <NavLink to="/">
           <Logo />
-        </a>
-        <a className="text-3xl text-black font-bold gap-8" href="/">
+        </NavLink>
+        <NavLink className="text-3xl text-black font-bold gap-8" to="/">
           ProAthlete
-        </a>
+        </NavLink>
       </div>
       {/* Nav items */}
       <div className="flex flex-wrap flex-1 items-center gap-10">
         <ul className="flex gap-14">
           <li className="text-gray-500 hover:text-black">
-            <a href="/">Shop</a>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Shop
+            </NavLink>
           </li>
           <li className="text-gray-500 hover:text-black">
-            <a href="/">Men</a>
+            <NavLink
+              to="/men"
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Men
+            </NavLink>
           </li>
           <li className="text-gray-500 hover:text-black">
-            <a href="/">Women</a>
+            <NavLink
+              to="/women"
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Women
+            </NavLink>
           </li>
           <li className="text-gray-500 hover:text-black">
-            <a href="/">Kids</a>
+            <NavLink
+              to="/kids"
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Kids
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -58,19 +80,19 @@ export const Navigation = () => {
       <div className="flex flex-wrap items-center gap-4">
         <ul className="flex items-center gap-8">
           <li>
-            <a href="/">
+            <NavLink to="/wishlist">
               <Wishlist />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/">
+            <NavLink to="/account">
               <AccountIcon />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/">
+            <NavLink to="/cart">
               <CartIcon />
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import { SectionHeading } from "./SectionHeading";
-import { Card } from "../Card/Card";
+import { SectionHeading } from "../SectionHeading/SectionHeading";
+import { Card } from "../../Card/Card";
 
 export const Category = ({ title, data }) => {
   return (

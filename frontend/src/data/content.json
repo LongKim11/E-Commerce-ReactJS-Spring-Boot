@@ -1,118 +1,156 @@
 {
   "categories": [
     {
-      "title": "Category for Men",
-      "data": [
+      "id": 1,
+      "name": "Men",
+      "code": "MEN",
+      "path": "/men",
+      "description": "Men's Clothing",
+      "types": [
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "id": 1,
+          "name": "Jeans",
+          "description": "Men's jeans"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "id": 2,
+          "name": "Shirts",
+          "description": "Men's shirts"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "id": 3,
+          "name": "Shorts",
+          "description": "Men's shorts"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "id": 4,
+          "name": "T-shirts",
+          "description": "Men's t-shirts"
+        },
+        {
+          "id": 14,
+          "name": "Hoodie's",
+          "description": "Men's Hoodie"
         }
-      ]
+      ],
+      "meta_data": {
+        "colors": [
+          "Black",
+          "White",
+          "Purple",
+          "Gray",
+          "Blue",
+          "Red",
+          "Orange",
+          "Navy",
+          "Grey",
+          "Yellow",
+          "Pink",
+          "Green"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"]
+      }
     },
     {
-      "title": "Category for Women",
-      "data": [
+      "id": 2,
+      "name": "Women",
+      "code": "WOMEN",
+      "path": "/women",
+      "description": "Women's Clothing",
+      "types": [
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "type_id": 5,
+          "code": "DRESSES",
+          "name": "Dresses"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "type_id": 6,
+          "code": "CROPTOP",
+          "name": "Crop Top"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "type_id": 7,
+          "code": "SHORTS",
+          "name": "Shorts"
         },
         {
-          "title": "Hoodies & Sweetshirt",
-          "description": "Explore Now!",
-          "imagePath": "/images/shirt.jpg"
+          "type_id": 8,
+          "code": "JEANS",
+          "name": "Jeans"
+        },
+        {
+          "type_id": 9,
+          "code": "TSHIRTS",
+          "name": "T-shirt"
+        },
+        {
+          "type_id": 10,
+          "code": "SWEATSHIRT",
+          "name": "Hoodie/Sweatshirt"
+        },
+        {
+          "type_id": 11,
+          "code": "TOPS",
+          "name": "Tops"
+        },
+        {
+          "type_id": 12,
+          "code": "BOXERS",
+          "name": "Boxers"
+        },
+        {
+          "type_id": 13,
+          "code": "KURTIS",
+          "name": "Kurtis"
         }
-      ]
-    }
-  ],
-  "footer": {
-    "items": [
-      {
-        "title": "Need Help",
-        "list": [
-          {
-            "label": "Contact Us",
-            "path": "/contact-us"
-          },
-          {
-            "label": "Track Order",
-            "path": "/track-order"
-          },
-          {
-            "label": "Returns & Refunds",
-            "path": "/refunds"
-          },
-          {
-            "label": "FAQ's",
-            "path": "/faq"
-          },
-          {
-            "label": "Career",
-            "path": "/career"
-          }
-        ]
-      },
-      {
-        "title": "Company",
-        "list": [
-          {
-            "label": "About Us",
-            "path": "/about"
-          },
-          {
-            "label": "Media",
-            "path": "/media"
-          }
-        ]
-      },
-      {
-        "title": "More Info",
-        "list": [
-          {
-            "label": "Term and Conditions",
-            "path": "/terms-conditions"
-          },
-          {
-            "label": "Privacy Policy",
-            "path": "/policies"
-          },
-          {
-            "label": "Shipping Policy",
-            "path": "/policies"
-          }
-        ]
-      },
-      {
-        "title": "Location",
-        "description": "Ho Chi Minh City"
+      ],
+      "meta_data": {
+        "colors": [
+          "Black",
+          "White",
+          "Purple",
+          "Gray",
+          "Blue",
+          "Red",
+          "Orange",
+          "Navy",
+          "Grey",
+          "Yellow",
+          "Pink",
+          "Green"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"]
       }
-    ],
-    "copyright": "Copyright © 2025 LongKim11"
-  }
+    },
+    {
+      "id": 3,
+      "name": "Kids",
+      "code": "KIDS",
+      "path": "/kids",
+      "description": "Kids Clothing",
+      "types": [
+        {
+          "id": 15,
+          "name": "T-shirts",
+          "description": "Kids' t-shirts"
+        },
+        {
+          "id": 16,
+          "name": "Shorts",
+          "description": "Kids' shorts"
+        },
+        {
+          "id": 17,
+          "name": "Dresses",
+          "description": "Kids' dresses"
+        },
+        {
+          "id": 18,
+          "name": "Jeans",
+          "description": "Kids' jeans"
+        }
+      ],
+      "meta_data": {}
+    }
+  ]
 }

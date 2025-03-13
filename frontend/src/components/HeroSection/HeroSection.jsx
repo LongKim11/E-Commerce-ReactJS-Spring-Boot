@@ -18,10 +18,10 @@ export const HeroSection = () => {
         </p>
 
         <button className="cursor-pointer rounded-3xl mt-6 w-44 h-12 bg-white text-black hover:bg-slate-100">
-          Shop Women's
+          Shop Now
         </button>
         <button className="ml-5 cursor-pointer rounded-3xl mt-6 w-44 h-12 bg-gray-600 text-white hover:bg-gray-500">
-          Shop Men's
+          Contact Us
         </button>
       </main>
     </div>
