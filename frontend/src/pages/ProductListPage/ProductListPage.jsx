@@ -32,12 +32,12 @@ export const ProductListPage = ({ gender }) => {
           <div>
             <p className="text-lg mt-5">Categories</p>
             <Categories types={categoriesData?.types} />
-            <hr></hr>
+            <hr className="mt-3"></hr>
           </div>
           {/* Price */}
           <div>
             <Price />
-            <hr></hr>
+            <hr className="mt-5"></hr>
           </div>
           {/* Colors */}
           <div>
@@ -50,9 +50,9 @@ export const ProductListPage = ({ gender }) => {
         </div>
 
         {/* Products */}
-        <div>
+        <div className="p-3">
           <p className="text-lg">{categoriesData?.description}</p>
-          <div className="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols- 3 xl:grid-cols-4 gap-8 px-2">
+          <div className="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {productsData.map((product, index) => (
               <ProductCard key={index} data={product} />
             ))}

@@ -1,14 +1,17 @@
 import React from "react";
 import { FavoriteIcon } from "../../components/Common/FavoriteIcon";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ data }) => {
   return (
     <div className="flex flex-col hover:scale-105 transition-transform cursor-pointer relative">
-      <img
-        src={data.thumbnail}
-        alt={data.title}
-        className="bg-cover bg-center rounded cursor-pointer h-[320px] w-[280px] object-cover"
-      />
+      <Link to={`/product/${data.id}`}>
+        <img
+          src={data.thumbnail}
+          alt={data.title}
+          className="bg-cover bg-center rounded cursor-pointer h-[320px] w-[280px] object-cover"
+        />
+      </Link>
 
       <div className="flex justify-between items-center">
         <div className="flex flex-col pt-2">

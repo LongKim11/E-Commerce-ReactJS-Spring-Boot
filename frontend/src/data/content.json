@@ -59,47 +59,47 @@
       "description": "Women's Clothing",
       "types": [
         {
-          "type_id": 5,
+          "id": 5,
           "code": "DRESSES",
           "name": "Dresses"
         },
         {
-          "type_id": 6,
+          "id": 6,
           "code": "CROPTOP",
           "name": "Crop Top"
         },
         {
-          "type_id": 7,
+          "id": 7,
           "code": "SHORTS",
           "name": "Shorts"
         },
         {
-          "type_id": 8,
+          "id": 8,
           "code": "JEANS",
           "name": "Jeans"
         },
         {
-          "type_id": 9,
+          "id": 9,
           "code": "TSHIRTS",
           "name": "T-shirt"
         },
         {
-          "type_id": 10,
+          "id": 10,
           "code": "SWEATSHIRT",
           "name": "Hoodie/Sweatshirt"
         },
         {
-          "type_id": 11,
+          "id": 11,
           "code": "TOPS",
           "name": "Tops"
         },
         {
-          "type_id": 12,
+          "id": 12,
           "code": "BOXERS",
           "name": "Boxers"
         },
         {
-          "type_id": 13,
+          "id": 13,
           "code": "KURTIS",
           "name": "Kurtis"
         }
@@ -157,7 +157,7 @@
     {
       "id": 1,
       "title": "Black Sweatshirt",
-      "description": "100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.",
+      "description": "100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.",
       "category_id": 2,
       "type_id": 10,
       "brand": "Nike",
@@ -167,9 +167,9 @@
       "discount": 20,
       "thumbnail": "https://placehold.co/400",
       "images": [
-        "https://codedev.b-cdn.net/products/sweatshirt-black.jpg",
-        "https://codedev.b-cdn.net/products/woman-black-shirt-giving-neutral-flirtatious-poses.jpg",
-        "https://codedev.b-cdn.net/products/woman-holding-coffee-cup-smiling.jpg"
+        "https://placehold.co/400",
+        "https://placehold.co/400",
+        "https://placehold.co/400"
       ],
       "rating": 4.5
     },
@@ -184,11 +184,8 @@
       "size": ["S", "M", "L"],
       "color": ["White"],
       "discount": 15,
-      "images": [
-        "https://codedev.b-cdn.net/products/tshirt-white.jpg",
-        "https://codedev.b-cdn.net/products/tshirt-white.jpg"
-      ],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.5
     },
     {
@@ -202,8 +199,8 @@
       "size": ["S", "M", "L"],
       "color": ["Purple"],
       "discount": 10,
-      "images": ["hoodie-purple1.jpg", "hoodie-purple2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.6
     },
     {
@@ -217,8 +214,8 @@
       "size": ["S", "M", "L"],
       "color": ["White"],
       "discount": 5,
-      "images": ["dress-white-leaves1.jpg", "dress-white-leaves2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.7
     },
     {
@@ -232,8 +229,8 @@
       "size": ["S", "M", "L"],
       "color": ["White"],
       "discount": 10,
-      "images": ["crop-top-white1.jpg", "crop-top-white2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.3
     },
     {
@@ -247,8 +244,8 @@
       "size": ["S", "M", "L"],
       "color": ["Black"],
       "discount": 15,
-      "images": ["shorts-black1.jpg", "shorts-black2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.5
     },
     {
@@ -262,8 +259,8 @@
       "size": ["S", "M", "L"],
       "color": ["Blue"],
       "discount": 10,
-      "images": ["jeans-blue1.jpg", "jeans-blue2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.8
     },
     {
@@ -277,8 +274,8 @@
       "size": ["S", "M", "L"],
       "color": ["Gray"],
       "discount": 10,
-      "images": ["sweatshirt-gray1.jpg", "sweatshirt-gray2.jpg"],
       "thumbnail": "https://placehold.co/400",
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "rating": 4.6
     },
     {
@@ -292,7 +289,7 @@
       "size": ["S", "M", "L"],
       "color": ["Blue"],
       "discount": 15,
-      "images": ["shorts-denim1.jpg", "shorts-denim2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.7
     },
@@ -307,7 +304,7 @@
       "size": ["S", "M", "L"],
       "color": ["Black"],
       "discount": 10,
-      "images": ["tshirt-black1.jpg", "tshirt-black2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.5
     },
@@ -322,7 +319,7 @@
       "size": ["S", "M", "L"],
       "color": ["Blue"],
       "discount": 15,
-      "images": ["crop-top-blue-flower1.jpg", "crop-top-blue-flower2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.3
     },
@@ -337,7 +334,7 @@
       "size": ["S", "M", "L"],
       "color": ["Black"],
       "discount": 10,
-      "images": ["crop-top-black1.jpg", "crop-top-black2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.2
     },
@@ -352,7 +349,7 @@
       "size": ["M", "L", "XL"],
       "color": ["Black"],
       "discount": 10,
-      "images": ["black-tshirt1.jpg", "black-tshirt2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.5
     },
@@ -367,7 +364,7 @@
       "size": ["M", "L", "XL"],
       "color": ["White"],
       "discount": 15,
-      "images": ["white-hoodie1.jpg", "white-hoodie2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.7
     },
@@ -382,7 +379,7 @@
       "size": ["M", "L", "XL"],
       "color": ["Blue"],
       "discount": 20,
-      "images": ["blue-jeans1.jpg", "blue-jeans2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.6
     },
@@ -397,7 +394,7 @@
       "size": ["M", "L", "XL"],
       "color": ["Gray"],
       "discount": 10,
-      "images": ["gray-shorts1.jpg", "gray-shorts2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.4
     },
@@ -412,7 +409,7 @@
       "size": ["M", "L", "XL"],
       "color": ["Black"],
       "discount": 15,
-      "images": ["black-hoodie1.jpg", "black-hoodie2.jpg"],
+      "images": ["https://placehold.co/400", "https://placehold.co/400"],
       "thumbnail": "https://placehold.co/400",
       "rating": 4.8
     }

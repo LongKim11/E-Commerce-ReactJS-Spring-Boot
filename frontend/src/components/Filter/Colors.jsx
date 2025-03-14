@@ -33,7 +33,7 @@ export const Colors = ({ colors }) => {
       <p className="my-5">Colors</p>
       <div className="flex flex-wrap p-4">
         {colors?.map((color, index) => (
-          <div className="flex flex-col mr-2" key={index}>
+          <div className="flex flex-col mr-3 mb-3" key={index}>
             <div
               key={index}
               className="w-8 h-8 border border-gray-300 rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
