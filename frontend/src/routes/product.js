@@ -4,5 +4,6 @@ export const loadProductByID = ({ params }) => {
   const product = content.products.find(
     (product) => product.id == params.productID
   );
+
   return { product };
 };

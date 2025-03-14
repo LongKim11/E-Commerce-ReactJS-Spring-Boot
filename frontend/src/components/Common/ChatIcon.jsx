@@ -13,7 +13,7 @@ export const ChatIcon = () => {
     >
       <path
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         d="M16 17.25h2A2.25 2.25 0 0020.25 15V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v9A2.25 2.25 0 006 17.25h6a2.25 2.25 0 012.25 2.25V21m.75-8.25H7.5m9-4.5h-9"
       ></path>
       <title>Chat Icon</title>
