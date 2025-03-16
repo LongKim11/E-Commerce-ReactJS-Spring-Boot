@@ -13,8 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class CategoryDTO {
-    private UUID id;
     private String name;
     private String description;
-    private List<ProductDTO> productList;
 }

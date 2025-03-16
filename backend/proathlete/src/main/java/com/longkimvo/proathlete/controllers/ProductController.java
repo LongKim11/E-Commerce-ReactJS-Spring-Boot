@@ -25,7 +25,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
-        Product product = productService.addProduct(ProductDTO productDTO);
+        Product product = productService.addProduct(productDTO);
 
         return null;
     }
