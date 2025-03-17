@@ -14,7 +14,7 @@ export const Size = ({ sizes }) => {
   );
 
   return (
-    <div className="flex flex-col mb-4">
+    <div className="flex flex-col my-4">
       <p className="mb-5">Size</p>
       <div className="flex flex-wrap">
         {sizes?.map((size, index) => (
