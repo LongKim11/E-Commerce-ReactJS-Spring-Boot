@@ -12,8 +12,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ResourceDTO {
-    private UUID id;
-    private String name;
     private String url;
-    private UUID product_id;
 }

@@ -17,7 +17,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Category> getAllCategory () {
+    public List<Category> getAllCategories () {
         return categoryRepository.findAll();
     }
 
@@ -34,7 +34,7 @@ public class CategoryService {
     }
 
     public Category updateCategory (UUID categoryID, CategoryDTO categoryDTO) {
-        Category category = categoryRepository.findById(categoryID).orElseThrow(() -> new ResourceNotFoundException("Category Not Found with ID: " + categoryID));
+        Category category = getCategoryByID(categoryID);
 
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
@@ -43,7 +43,7 @@ public class CategoryService {
     }
 
     public void deleteCategoryByID(UUID categoryID) {
-        Category category = categoryRepository.findById(categoryID).orElseThrow(() -> new ResourceNotFoundException("Category Not Found with ID: " + categoryID));
+        Category category = getCategoryByID(categoryID);
 
         categoryRepository.deleteById(categoryID);
     }

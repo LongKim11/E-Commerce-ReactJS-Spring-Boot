@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/products")
@@ -23,10 +24,28 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductByID (@PathVariable(value="id") UUID productID) {
+        Product product = productService.getProductByID(productID);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
-        Product product = productService.addProduct(productDTO);
+        Product product = productService.createProduct(productDTO);
+        return new ResponseEntity<>(product, HttpStatus.OK
+        );
+    }
 
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable(value="id") UUID productID, @RequestBody ProductDTO productDTO) {
+        Product product = productService.updateProduct(productID, productDTO);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProductByID (@PathVariable(value="id") UUID productID) {
+        productService.deleteProductByID(productID);
+        return ResponseEntity.noContent().build();
     }
 }

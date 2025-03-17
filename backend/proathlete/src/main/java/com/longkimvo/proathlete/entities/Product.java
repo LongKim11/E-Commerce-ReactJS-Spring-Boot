@@ -1,6 +1,7 @@
 package com.longkimvo.proathlete.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.longkimvo.proathlete.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -43,9 +44,10 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id", nullable = false)
+    @JsonIgnore
     private Category category;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Resource> resources;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

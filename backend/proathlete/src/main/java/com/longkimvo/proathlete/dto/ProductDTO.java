@@ -15,7 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ProductDTO {
-    private UUID id;
     private String name;
     private String description;
     private BigDecimal price;
