@@ -50,10 +50,10 @@ export const ProductDetailPage = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row px-10">
-        <div className="w[100%] md:w-[40%] lg:w-[50%]">
+        <div className="w-[100%] md:w-[40%] lg:w-[50%]">
           {/* Image */}
-          <div className="flex flex-col md:flex-row h-[30%]">
-            <div className="w-[100%] md:w-[20%] justity-center h-[40px] md:h-[420px]">
+          <div className="flex flex-col md:flex-row">
+            <div className="w-[100%] md:w-[15%] justity-center">
               {/* Stack Images */}
               <div className="flex flex-col justify-center h-full">
                 {product.images.map((image, index) => (
@@ -78,22 +78,17 @@ export const ProductDetailPage = () => {
         <div className="w-[60%] px-10">
           {/* Product Description */}
           <Breadcumb links={links} />
-          <p className="text-3xl mt-2">{product.title}</p>
-          <Rating rating={product.rating} />
-          <p className="text-xl text-bold my-3">$ {product.price}</p>
-          <div className="flex flex-col">
-            <div className="flex gap-2">
-              <p className="text-sm font-bold">Select Size</p>
-              <Link
-                to={"https://en.wikipedia.org/wiki/Clothing_sizes"}
-                className="text-sm text-gray-500 hover:text-gray-700"
-                target="_blank"
-              >{`Size Guide ->`}</Link>
-            </div>
-          </div>
+          <p className="text-3xl my-3">{product.title}</p>
+          <Rating />
+          <p className="text-2xl text-bold my-3">$ {product.price}</p>
           <Size sizes={product.size}></Size>
+          <Link
+            to={"https://en.wikipedia.org/wiki/Clothing_sizes"}
+            className="text-gray-500 hover:text-gray-700"
+            target="_blank"
+          >{`Size Guide ->`}</Link>
           <div>
-            <p className="text-lg font-bold">Colors Available</p>
+            <p className="text-lg font-bold mt-5 mb-2">Colors Available</p>
             <ProductColors colors={product.color} />
           </div>
           <hr className="my-5"></hr>

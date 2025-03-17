@@ -15,13 +15,13 @@ export const Size = ({ sizes }) => {
 
   return (
     <div className="flex flex-col mb-4">
-      <p className="my-5">Size</p>
-      <div className="flex flex-wrap p-4">
+      <p className="mb-5">Size</p>
+      <div className="flex flex-wrap">
         {sizes?.map((size, index) => (
           <div className="flex flex-col mr-2" key={index}>
             <div
               key={index}
-              className="w-[50px] mb-3 text-gray-500 text-center h-8 border border-gray-300 bg-white rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
+              className="w-[50px] text-gray-500 text-center h-8 border border-gray-300 bg-white rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
               onClick={() => onClickDiv(size)}
               style={
                 appliedSizes.includes(size)

@@ -21,9 +21,9 @@ export const ProductListPage = ({ gender }) => {
 
   return (
     <>
-      <div className="flex my-10">
+      <div className="flex mt-10 mb-20">
         {/* Filters */}
-        <div className="w-[25%] p-[20px] border rounded-lg m-[20px]">
+        <div className="w-[25%] p-6 border rounded-lg m-5">
           <div className="flex justify-between">
             <p className="text-lg text-gray-600">Filter</p>
             <FilterIcon />
@@ -42,6 +42,7 @@ export const ProductListPage = ({ gender }) => {
           {/* Colors */}
           <div>
             <Colors colors={categoriesData?.meta_data.colors} />
+            <hr className="mt-5"></hr>
           </div>
           {/* Sizes */}
           <div>

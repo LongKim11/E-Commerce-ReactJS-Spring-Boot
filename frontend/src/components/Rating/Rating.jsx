@@ -1,16 +1,12 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { StarIcon } from "../Common/StarIcon";
 import { EmptyStarIcon } from "../Common/EmptyStarIcon";
 
-export const Rating = ({ rating }) => {
-  const ratingStar = useMemo(() => {
-    return Array.from({ length: Math.floor(Number(rating)) }, (_, i) => i + 1);
-  }, [rating]);
+const ratingStar = [1, 2, 3, 4];
+const emptyStar = [1];
+const rating = 4;
 
-  const emptyStar = useMemo(() => {
-    return Array.from({ length: 5 - ratingStar.length }, (_, i) => i + 1);
-  }, [ratingStar]);
-
+export const Rating = () => {
   return (
     <div className="flex items-center">
       {ratingStar.map((_, index) => (

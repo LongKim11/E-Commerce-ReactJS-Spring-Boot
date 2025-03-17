@@ -4,7 +4,7 @@ export const Categories = ({ types }) => {
   return (
     <div>
       {types?.map((type, index) => (
-        <div className="flex items-center p-1" key={index}>
+        <div className="flex items-center py-1" key={index}>
           <input
             type="checkbox"
             name={type.name}

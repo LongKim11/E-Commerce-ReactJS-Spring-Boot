@@ -29,19 +29,19 @@ export const Colors = ({ colors }) => {
   );
 
   return (
-    <div className="flex flex-col mb-4">
+    <div className="flex flex-col">
       <p className="my-5">Colors</p>
-      <div className="flex flex-wrap p-4">
+      <div className="flex flex-wrap">
         {colors?.map((color, index) => (
-          <div className="flex flex-col mr-3 mb-3" key={index}>
+          <div className="flex flex-col mr-5 mb-5" key={index}>
             <div
               key={index}
-              className="w-8 h-8 border border-gray-300 rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
+              className="w-8 h-8 border border-slate-300 rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
               style={{ background: `${colorSelector[color]}` }}
               onClick={() => onClickDiv(color)}
             ></div>
             <p
-              className="text-sm text-gray-400"
+              className="text-sm text-gray-500"
               style={{
                 color: `${appliedColors?.includes(color) ? "black" : ""}`,
               }}

@@ -8,7 +8,7 @@ export const Price = () => {
 
   return (
     <div className="flex flex-col">
-      <p className="mt-5">Price</p>
+      <p className="my-3">Price</p>
       <RangeSlider
         min={0}
         max={5000}
@@ -16,8 +16,8 @@ export const Price = () => {
         className={"custom-range-slider"}
         onInput={(values) => setRange({ min: values[0], max: values[1] })}
       />
-      <div className="flex justify-between">
-        <div className="border rounded-lg h-8 mt-4 max-w-[50%] w-[40%] flex items-center">
+      <div className="flex justify-between mt-3">
+        <div className="border border-gray-600 rounded-lg h-8 mt-4 w-[30%] flex items-center">
           <p className="pl-4 text-gray-600">$</p>{" "}
           <input
             type="number"
@@ -26,7 +26,7 @@ export const Price = () => {
             disabled
           />
         </div>
-        <div className="border rounded-lg h-8 mt-4 max-w-[50%] w-[40%] flex items-center">
+        <div className="border border-gray-600 rounded-lg h-8 mt-4 w-[30%] flex items-center">
           <p className="pl-4 text-gray-600">$</p>{" "}
           <input
             type="number"
