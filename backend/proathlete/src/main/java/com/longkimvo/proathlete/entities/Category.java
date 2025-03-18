@@ -1,5 +1,6 @@
 package com.longkimvo.proathlete.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
+
 public class Category {
 
     @Id
@@ -29,6 +31,7 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Product> product;
+    @JsonIgnoreProperties("category")
+    private List<Product> productList;
 
 }

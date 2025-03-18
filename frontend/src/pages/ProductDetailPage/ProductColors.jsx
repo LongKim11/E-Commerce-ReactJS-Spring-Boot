@@ -1,12 +1,12 @@
 import React from "react";
 
-export const ProductColors = ({ colors }) => {
+export const ProductColors = ({ data }) => {
   return (
     <div className="flex">
-      {colors.map((color, index) => (
+      {data?.map((item, index) => (
         <div
           className="rounded-[50%] w-4 h-4 border border-gray-500 mr-2"
-          style={{ background: color }}
+          style={{ background: item.color }}
           key={index}
         ></div>
       ))}

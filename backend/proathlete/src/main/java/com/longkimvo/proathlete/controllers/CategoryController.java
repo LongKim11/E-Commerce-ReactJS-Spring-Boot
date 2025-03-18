@@ -2,7 +2,10 @@ package com.longkimvo.proathlete.controllers;
 
 import com.longkimvo.proathlete.dto.CategoryDTO;
 import com.longkimvo.proathlete.entities.Category;
+import com.longkimvo.proathlete.entities.Product;
 import com.longkimvo.proathlete.services.CategoryService;
+import com.longkimvo.proathlete.services.ProductService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +16,13 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/category")
+@CrossOrigin
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategory() {

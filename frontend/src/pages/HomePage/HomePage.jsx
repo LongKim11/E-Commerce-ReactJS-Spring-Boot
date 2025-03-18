@@ -3,6 +3,7 @@ import { HeroSection } from "../../components/HeroSection/HeroSection";
 import { ShopByGender } from "../../components/Sections/ShopByGender/ShopByGender";
 import { ContactUs } from "../../components/Sections/ContactUs/ContactUs";
 
+
 export const HomePage = () => {
   const shopByGenderRef = useRef(null);
   const contactUsRef = useRef(null);
@@ -10,6 +11,7 @@ export const HomePage = () => {
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
+
 
   return (
     <>

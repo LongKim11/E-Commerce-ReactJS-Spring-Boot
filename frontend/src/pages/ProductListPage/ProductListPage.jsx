@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FilterIcon } from "../../components/Common/FilterIcon";
 import content from "../../data/content.json";
 import { Categories } from "../../components/Filter/Categories";
@@ -6,6 +6,10 @@ import { Price } from "../../components/Filter/Price";
 import { Colors } from "../../components/Filter/Colors";
 import { Size } from "../../components/Filter/Size";
 import { ProductCard } from "./ProductCard";
+import { getProductByGender } from "../../api/productAPI";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../store/features/loadingSlice";
+
 const categories = content.categories;
 
 export const ProductListPage = ({ gender }) => {
@@ -13,11 +17,19 @@ export const ProductListPage = ({ gender }) => {
     return categories.find((category) => category.code == gender);
   }, [gender]);
 
-  const productsData = useMemo(() => {
-    return content.products.filter(
-      (product) => product.category_id == categoriesData.id
-    );
-  }, [categoriesData]);
+  const [productList, setProductList] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    getProductByGender(gender)
+      .then((res) => {
+        console.log("Data: ", res);
+        setProductList(res);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => dispatch(setLoading(false)));
+  }, [gender, dispatch]);
 
   return (
     <>
@@ -54,7 +66,7 @@ export const ProductListPage = ({ gender }) => {
         <div className="p-3">
           <p className="text-lg">{categoriesData?.description}</p>
           <div className="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {productsData.map((product, index) => (
+            {productList.map((product, index) => (
               <ProductCard key={index} data={product} />
             ))}
           </div>

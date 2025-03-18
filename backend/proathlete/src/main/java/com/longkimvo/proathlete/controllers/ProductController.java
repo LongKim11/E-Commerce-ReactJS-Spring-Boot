@@ -2,6 +2,7 @@ package com.longkimvo.proathlete.controllers;
 
 import com.longkimvo.proathlete.dto.ProductDTO;
 import com.longkimvo.proathlete.entities.Product;
+import com.longkimvo.proathlete.enums.Gender;
 import com.longkimvo.proathlete.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
+@CrossOrigin
 public class ProductController {
 
     @Autowired
@@ -47,5 +49,11 @@ public class ProductController {
     public ResponseEntity<Void> deleteProductByID (@PathVariable(value="id") UUID productID) {
         productService.deleteProductByID(productID);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/by-gender")
+    public ResponseEntity<List<Product>> getProductByGender(@RequestParam Gender gender) {
+        List<Product> products = productService.getProductByGender(gender);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }

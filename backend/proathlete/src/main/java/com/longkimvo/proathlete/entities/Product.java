@@ -2,6 +2,7 @@ package com.longkimvo.proathlete.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.longkimvo.proathlete.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,7 +45,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties("productList")
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

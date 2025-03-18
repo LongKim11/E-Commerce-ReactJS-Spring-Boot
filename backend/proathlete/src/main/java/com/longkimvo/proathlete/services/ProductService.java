@@ -5,6 +5,7 @@ import com.longkimvo.proathlete.entities.Category;
 import com.longkimvo.proathlete.entities.Product;
 import com.longkimvo.proathlete.entities.ProductVariant;
 import com.longkimvo.proathlete.entities.Resource;
+import com.longkimvo.proathlete.enums.Gender;
 import com.longkimvo.proathlete.exceptions.ResourceNotFoundException;
 import com.longkimvo.proathlete.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,5 +123,9 @@ public class ProductService {
         productRepository.deleteById(productID);
     }
 
+
+    public List<Product> getProductByGender(Gender gender) {
+        return productRepository.findByGender(gender);
+    }
 
 }
