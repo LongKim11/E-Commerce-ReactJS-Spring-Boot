@@ -12,12 +12,46 @@ import { setLoading } from "../../store/features/loadingSlice";
 
 const categories = content.categories;
 
+const uniqueCategory = (products) => {
+  return products.reduce((acc, product) => {
+    if (!acc.includes(product.category.name)) {
+      acc.push(product.category.name);
+    }
+    return acc;
+  }, []);
+};
+
+const uniqueColor = (products) => {
+  return products.reduce((acc, product) => {
+    for (let c of product.productVariantList) {
+      if (!acc.includes(c.color)) {
+        acc.push(c.color);
+      }
+    }
+    return acc;
+  }, []);
+};
+
+const uniqueSize = (products) => {
+  return products.reduce((acc, product) => {
+    for (let s of product.productVariantList) {
+      if (!acc.includes(s.size)) {
+        acc.push({ size: s.size });
+      }
+    }
+    return acc;
+  }, []);
+};
+
 export const ProductListPage = ({ gender }) => {
   const categoriesData = useMemo(() => {
     return categories.find((category) => category.code == gender);
   }, [gender]);
 
   const [productList, setProductList] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [colorFilter, setColorFilter] = useState([]);
+  const [sizeFilter, setSizeFilter] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +60,9 @@ export const ProductListPage = ({ gender }) => {
       .then((res) => {
         console.log("Data: ", res);
         setProductList(res);
+        setCategoryFilter(uniqueCategory(res));
+        setColorFilter(uniqueColor(res));
+        setSizeFilter(uniqueSize(res));
       })
       .catch((err) => console.log(err))
       .finally(() => dispatch(setLoading(false)));
@@ -43,7 +80,7 @@ export const ProductListPage = ({ gender }) => {
           {/* Categories */}
           <div>
             <p className="text-lg mt-5">Categories</p>
-            <Categories types={categoriesData?.types} />
+            <Categories types={categoryFilter} />
             <hr className="mt-3"></hr>
           </div>
           {/* Price */}
@@ -53,12 +90,12 @@ export const ProductListPage = ({ gender }) => {
           </div>
           {/* Colors */}
           <div>
-            <Colors colors={categoriesData?.meta_data.colors} />
+            <Colors colors={colorFilter} />
             <hr className="mt-5"></hr>
           </div>
           {/* Sizes */}
           <div>
-            <Size sizes={categoriesData?.meta_data.sizes} />
+            <Size sizes={sizeFilter} />
           </div>
         </div>
 
@@ -66,7 +103,7 @@ export const ProductListPage = ({ gender }) => {
         <div className="p-3">
           <p className="text-lg">{categoriesData?.description}</p>
           <div className="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {productList.map((product, index) => (
+            {productList?.map((product, index) => (
               <ProductCard key={index} data={product} />
             ))}
           </div>

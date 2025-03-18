@@ -128,4 +128,10 @@ public class ProductService {
         return productRepository.findByGender(gender);
     }
 
+    public List<Product> getProductByCategory(UUID categoryID) {
+        Category category = categoryService.getCategoryByID(categoryID);
+
+        return productRepository.findByCategory(category);
+    }
+
 }

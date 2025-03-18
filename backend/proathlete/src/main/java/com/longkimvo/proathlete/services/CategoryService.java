@@ -2,6 +2,7 @@ package com.longkimvo.proathlete.services;
 
 import com.longkimvo.proathlete.dto.CategoryDTO;
 import com.longkimvo.proathlete.entities.Category;
+import com.longkimvo.proathlete.enums.Gender;
 import com.longkimvo.proathlete.exceptions.ResourceNotFoundException;
 import com.longkimvo.proathlete.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,5 @@ public class CategoryService {
 
         categoryRepository.deleteById(categoryID);
     }
+    
 }

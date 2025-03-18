@@ -4,6 +4,7 @@ import com.longkimvo.proathlete.dto.ProductDTO;
 import com.longkimvo.proathlete.entities.Product;
 import com.longkimvo.proathlete.enums.Gender;
 import com.longkimvo.proathlete.services.ProductService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,12 @@ public class ProductController {
     @GetMapping("/by-gender")
     public ResponseEntity<List<Product>> getProductByGender(@RequestParam Gender gender) {
         List<Product> products = productService.getProductByGender(gender);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/by-category")
+    public ResponseEntity<List<Product>> getProductByCategory(@RequestParam UUID categoryID) {
+        List<Product> products = productService.getProductByCategory(categoryID);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }

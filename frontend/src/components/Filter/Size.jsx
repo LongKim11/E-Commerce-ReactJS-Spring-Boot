@@ -17,19 +17,19 @@ export const Size = ({ sizes }) => {
     <div className="flex flex-col my-4">
       <p className="mb-5">Size</p>
       <div className="flex flex-wrap">
-        {sizes?.map((size, index) => (
-          <div className="flex flex-col mr-2" key={index}>
+        {sizes?.map((item, index) => (
+          <div className="flex flex-col" key={index}>
             <div
               key={index}
               className="w-[50px] text-gray-500 text-center h-8 border border-gray-300 bg-white rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => onClickDiv(size)}
+              onClick={() => onClickDiv(item.size)}
               style={
-                appliedSizes.includes(size)
+                appliedSizes.includes(item.size)
                   ? { background: "black", color: "white" }
                   : {}
               }
             >
-              {size}
+              {item.size  }
             </div>
           </div>
         ))}

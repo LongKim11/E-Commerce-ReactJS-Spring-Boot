@@ -15,7 +15,7 @@ const getAllProduct = async () => {
 const getProductByGender = async (gender) => {
   try {
     const response = await axiosInstance(
-      API_URLS.GET_PRODCUT_BY_GENDER(gender),
+      API_URLS.GET_PRODUCT_BY_GENDER(gender),
       { method: "GET" }
     );
     return response.data;
@@ -35,4 +35,20 @@ const getProductByID = async (id) => {
   }
 };
 
-export { getAllProduct, getProductByGender, getProductByID };
+const getProductByCategory = async (categoryID) => {
+  try {
+    const response = await axiosInstance(
+      API_URLS.GET_PRODUCT_BY_CATEGORY(categoryID)
+    );
+    return response.data;
+  } catch (err) {
+    console.log("Error fetching Product:", err);
+  }
+};
+
+export {
+  getAllProduct,
+  getProductByGender,
+  getProductByID,
+  getProductByCategory,
+};
