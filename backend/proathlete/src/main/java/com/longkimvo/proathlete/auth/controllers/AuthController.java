@@ -1,5 +1,6 @@
 package com.longkimvo.proathlete.auth.controllers;
 
+import com.longkimvo.proathlete.auth.config.JWTTokenHelper;
 import com.longkimvo.proathlete.auth.dto.LoginRequest;
 import com.longkimvo.proathlete.auth.dto.RegistrationRequest;
 import com.longkimvo.proathlete.auth.dto.RegistrationResponse;
@@ -34,6 +35,9 @@ public class AuthController {
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Autowired
+    JWTTokenHelper jwtTokenHelper;
+
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
         try {
@@ -49,7 +53,8 @@ public class AuthController {
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
                 }
 
-                String token = null;
+                String token = jwtTokenHelper.generateToken(user.getEmail());
+
                 UserToken userToken = UserToken.builder().token(token).build();
                 return new ResponseEntity<>(userToken, HttpStatus.OK);
             }
