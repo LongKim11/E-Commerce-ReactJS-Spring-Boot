@@ -6,7 +6,7 @@ import { Logo } from "../Common/Logo";
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
-export const Navigation = () => {
+export const Navigation = ({ variant = "default" }) => {
   return (
     <nav className="flex items-center justify-between py-2 px-16 gap-56">
       {/* Logo */}
@@ -78,23 +78,40 @@ export const Navigation = () => {
 
       {/* Action Items - Icons */}
       <div className="flex flex-wrap items-center gap-4">
-        <ul className="flex items-center gap-8">
-          <li>
-            <NavLink to="/wishlist">
-              <Wishlist />
+        {variant == "default" && (
+          <ul className="flex items-center gap-8">
+            <li>
+              <NavLink to="/wishlist">
+                <Wishlist />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/account">
+                <AccountIcon />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/cart">
+                <CartIcon />
+              </NavLink>
+            </li>
+          </ul>
+        )}
+
+        {variant == "authentication" && (
+          <div className="flex gap-x-3">
+            <NavLink to="/auth/login">
+              <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700">
+                Log in
+              </button>
             </NavLink>
-          </li>
-          <li>
-            <NavLink to="/account">
-              <AccountIcon />
+            <NavLink to="/auth/register">
+              <button className="border border-black text-black px-4 py-2 rounded-lg cursor-pointer hover:bg-slate-100">
+                Register
+              </button>
             </NavLink>
-          </li>
-          <li>
-            <NavLink to="/cart">
-              <CartIcon />
-            </NavLink>
-          </li>
-        </ul>
+          </div>
+        )}
       </div>
     </nav>
   );
