@@ -101,7 +101,7 @@ export const Navigation = ({ variant = "default" }) => {
         {variant == "authentication" && (
           <div className="flex gap-x-3">
             <NavLink to="/auth/login">
-              <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700">
+              <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:hover:bg-slate-800">
                 Log in
               </button>
             </NavLink>

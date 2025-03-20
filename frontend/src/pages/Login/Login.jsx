@@ -21,13 +21,10 @@ export const Login = () => {
         if (res?.token) {
           saveToken(res.token);
           navigate("/");
-        } else {
-          setError("Username or password is incorrect");
         }
       })
-      .catch((err) => {
-        setError("Something went wrong");
-        console.log(err);
+      .catch(() => {
+        setError("Username or password is incorrect!");
       })
       .finally(() => dispatch(setLoading(false)));
   };
@@ -38,8 +35,10 @@ export const Login = () => {
 
   return (
     <div className="px-20">
-      <p className="text-3xl font-bold mb-10 text-center">Log In</p>
-
+      <p className="text-3xl font-bold mb-3 text-center">Log in</p>
+      <p className="text-gray-500 mb-10 text-center">
+        Welcome back! Please enter your details
+      </p>
       <button className="flex justify-center items-center rounded border px-4 py-2 mb-10 w-full cursor-pointer hover:bg-gray-100">
         <img src={GoogleLogo} className="w-12 h-6"></img>
         <p className="">Continue With Google</p>
@@ -78,10 +77,16 @@ export const Login = () => {
           </Link>
           <button
             type="submit"
-            className="rounded bg-blue-600 text-white px-4 py-2 cursor-pointer w-full hover:bg-blue-700"
+            className="rounded bg-blue-600 text-white px-4 py-2 cursor-pointer w-full hover:bg-blue-700 mb-3"
           >
             Log In {"->"}
           </button>
+          <Link
+            to="/auth/register"
+            className="underline mt-3 text-gray-500 hover:text-gray-700 mb-5 focus:outline-none"
+          >
+            Don't have an account? Sign up
+          </Link>
         </form>
         {error && <p className="text-red-500 mt-5">{error}</p>}
       </div>
