@@ -8,6 +8,7 @@ export const API_URLS = {
   GET_CATEGORY_BY_ID: (id) => `/api/category/${id}`,
   AUTHENTICATION_LOGIN: "/api/auth/login",
   AUTHENTICATION_REGISTER: "/api/auth/register",
+  AUTHENTICATION_VERIFY_CODE: "/api/auth/verify-code",
 };
 
 export const API_BASE_URL = "http://localhost:8080";

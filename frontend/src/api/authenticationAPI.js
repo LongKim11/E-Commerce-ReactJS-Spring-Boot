@@ -21,10 +21,22 @@ export const register = async (formData) => {
       method: "POST",
       data: formData,
     });
-    console.log(response.data);
     return response.data;
   } catch (err) {
     console.log("Error while registering", err);
+    throw new Error(err);
+  }
+};
+
+export const verifyCode = async (formData) => {
+  try {
+    const response = await axiosInstance(API_URLS.AUTHENTICATION_VERIFY_CODE, {
+      method: "POST",
+      data: formData,
+    });
+    return response.data;
+  } catch (err) {
+    console.log("Error while verifying", err);
     throw new Error(err);
   }
 };

@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setLoading } from "../../store/features/loadingSlice";
 import { login } from "../../api/authenticationAPI";
 import { saveToken } from "../../utils/jwt-helper";
+import { API_BASE_URL } from "../../api/endpoints";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -33,13 +34,20 @@ export const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleGoogleButton = () => {
+    window.location.href = API_BASE_URL + "/oauth2/authorization/google";
+  };
+
   return (
     <div className="px-20">
       <p className="text-3xl font-bold mb-3 text-center">Log in</p>
       <p className="text-gray-500 mb-10 text-center">
         Welcome back! Please enter your details
       </p>
-      <button className="flex justify-center items-center rounded border px-4 py-2 mb-10 w-full cursor-pointer hover:bg-gray-100">
+      <button
+        onClick={handleGoogleButton}
+        className="flex justify-center items-center rounded border px-4 py-2 mb-10 w-full cursor-pointer hover:bg-gray-100"
+      >
         <img src={GoogleLogo} className="w-12 h-6"></img>
         <p className="">Continue With Google</p>
       </button>
