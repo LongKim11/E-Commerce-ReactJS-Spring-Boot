@@ -4,10 +4,7 @@ package com.longkimvo.proathlete.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.longkimvo.proathlete.auth.entities.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -38,6 +35,7 @@ public class Address {
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     @JsonIgnore
+    @ToString.Exclude
     private User user;
 
 }

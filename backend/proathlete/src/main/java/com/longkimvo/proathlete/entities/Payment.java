@@ -1,5 +1,7 @@
 package com.longkimvo.proathlete.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.longkimvo.proathlete.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +25,7 @@ public class Payment {
 
     @OneToOne
     @JoinColumn(name="order_id", nullable = false)
+    @JsonIgnore
     private Order order;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -34,4 +37,8 @@ public class Payment {
 
     @Column(nullable = false)
     private String paymentMethod;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PaymentStatus paymentStatus;
 }

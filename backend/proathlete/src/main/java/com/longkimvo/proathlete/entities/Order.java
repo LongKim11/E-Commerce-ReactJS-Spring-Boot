@@ -1,12 +1,10 @@
 package com.longkimvo.proathlete.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.longkimvo.proathlete.auth.entities.User;
 import com.longkimvo.proathlete.enums.OrderStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -29,10 +27,13 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name="address_id", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Address address;
 
     @Column(nullable = false)
@@ -43,6 +44,7 @@ public class Order {
     private OrderStatus orderStatus;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Payment payment;
 
     @Column(nullable = true)
@@ -53,5 +55,6 @@ public class Order {
     private Date expectedDeliveryDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<OrderItem> orderItemList;
 }

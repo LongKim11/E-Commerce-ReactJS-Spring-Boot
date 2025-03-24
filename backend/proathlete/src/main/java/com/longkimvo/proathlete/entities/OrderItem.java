@@ -1,11 +1,9 @@
 package com.longkimvo.proathlete.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.longkimvo.proathlete.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -23,10 +21,16 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name="product_id", nullable = false)
+    @JsonIgnore
     private Product product;
+
+    @Column(nullable = false)
+    private UUID productVariantID;
 
     @ManyToOne
     @JoinColumn(name="order_id", nullable = false)
+    @JsonIgnore
+    @ToString.Exclude
     private Order order;
 
     @Column(nullable = false)
@@ -35,7 +39,6 @@ public class OrderItem {
     @Column(nullable = false)
     private Double price;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PaymentStatus paymentStatus;
+    private Double subTotal;
 }
