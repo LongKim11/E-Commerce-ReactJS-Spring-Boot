@@ -13,7 +13,7 @@ import { setLoading } from "../../store/features/loadingSlice";
 const categories = content.categories;
 
 const uniqueCategory = (products) => {
-  return products.reduce((acc, product) => {
+  return products?.reduce((acc, product) => {
     if (!acc.includes(product.category.name)) {
       acc.push(product.category.name);
     }
@@ -22,7 +22,7 @@ const uniqueCategory = (products) => {
 };
 
 const uniqueColor = (products) => {
-  return products.reduce((acc, product) => {
+  return products?.reduce((acc, product) => {
     for (let c of product.productVariantList) {
       if (!acc.includes(c.color)) {
         acc.push(c.color);
@@ -33,7 +33,7 @@ const uniqueColor = (products) => {
 };
 
 const uniqueSize = (products) => {
-  return products.reduce((acc, product) => {
+  return products?.reduce((acc, product) => {
     for (let s of product.productVariantList) {
       if (!acc.includes(s.size)) {
         acc.push({ size: s.size });

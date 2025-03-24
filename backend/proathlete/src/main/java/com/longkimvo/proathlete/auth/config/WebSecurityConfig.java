@@ -46,9 +46,6 @@ public class WebSecurityConfig {
                         .requestMatchers("/oauth2/success").permitAll()
                 .anyRequest().authenticated())
                 .oauth2Login((oauth2login)-> oauth2login.defaultSuccessUrl("/oauth2/success").loginPage("/oauth2/authorization/google"))
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                )
                 .addFilterBefore(new JWTAuthenticationFilter(userDetailsService, jwtTokenHelper), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
