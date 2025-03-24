@@ -26,10 +26,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    public static final String[] publicAPI = {
-            "/api/auth/**"
-    };
-
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -43,16 +39,12 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/product/**", "/api/category/**").permitAll()
-                        .requestMatchers("/oauth2/success").permitAll()
+                        .requestMatchers(("/api/auth/**")).permitAll()
+//                        .requestMatchers("/oauth2/success").permitAll()
                 .anyRequest().authenticated())
-                .oauth2Login((oauth2login)-> oauth2login.defaultSuccessUrl("/oauth2/success").loginPage("/oauth2/authorization/google"))
+//                .oauth2Login((oauth2login)-> oauth2login.defaultSuccessUrl("/oauth2/success").loginPage("/oauth2/authorization/google"))
                 .addFilterBefore(new JWTAuthenticationFilter(userDetailsService, jwtTokenHelper), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer () {
-        return (web -> web.ignoring().requestMatchers(publicAPI));
     }
 
 

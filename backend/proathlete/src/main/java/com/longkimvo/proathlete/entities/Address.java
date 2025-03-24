@@ -1,13 +1,13 @@
 package com.longkimvo.proathlete.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.longkimvo.proathlete.auth.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.UUID;
 
