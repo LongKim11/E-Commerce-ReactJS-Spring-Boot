@@ -4,10 +4,6 @@ export const saveToken = (token) => {
   localStorage.setItem("token", token);
 };
 
-export const removeToken = () => {
-  localStorage.clear();
-};
-
 export const isTokenValid = () => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -23,4 +19,8 @@ export const isTokenValid = () => {
     console.log(err);
     return false;
   }
+};
+
+export const logout = () => {
+  localStorage.removeItem("token");
 };
