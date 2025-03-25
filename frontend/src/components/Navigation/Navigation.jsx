@@ -3,10 +3,14 @@ import { Wishlist } from "../Common/Wishlist";
 import { CartIcon } from "../Common/CartIcon";
 import { AccountIcon } from "../Common/AccountIcon";
 import { Logo } from "../Common/Logo";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Navigation.css";
+import { useSelector } from "react-redux";
 
 export const Navigation = ({ variant = "default" }) => {
+  const cartItems = useSelector((state) => state.cart.cart);
+  const cartLength = cartItems.length;
+
   return (
     <nav className="flex items-center justify-between py-2 px-16 gap-56">
       {/* Logo */}
@@ -79,21 +83,26 @@ export const Navigation = ({ variant = "default" }) => {
       {/* Action Items - Icons */}
       <div className="flex flex-wrap items-center gap-4">
         {variant == "default" && (
-          <ul className="flex items-center gap-8">
+          <ul className="flex gap-8">
             <li>
-              <NavLink to="/wishlist">
+              <Link to="/wishlist">
                 <Wishlist />
-              </NavLink>
+              </Link>
             </li>
             <li>
-              <NavLink to="/account">
+              <Link to="/account">
                 <AccountIcon />
-              </NavLink>
+              </Link>
             </li>
             <li>
-              <NavLink to="/cart">
+              <Link to="/cart" className="flex flex-wrap">
                 <CartIcon />
-              </NavLink>
+                {cartLength > 0 && (
+                  <div className="absolute ml-6 inline-flex items-center justify-center h-6 w-6 bg-black text-white text-xs rounded-full border-2 border-white">
+                    {cartLength}
+                  </div>
+                )}
+              </Link>
             </li>
           </ul>
         )}

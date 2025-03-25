@@ -1,13 +1,15 @@
 import React, { useState, useCallback } from "react";
 
-export const Size = ({ sizes }) => {
+export const Size = ({ sizes, onChange }) => {
   const [appliedSizes, setAppliedSizes] = useState([]);
   const onClickDiv = useCallback(
     (item) => {
       if (appliedSizes.indexOf(item) > -1) {
         setAppliedSizes(appliedSizes?.filter((size) => size !== item));
+        onChange("");
       } else {
         setAppliedSizes([...appliedSizes, item]);
+        onChange(item);
       }
     },
     [appliedSizes, setAppliedSizes]
@@ -15,22 +17,21 @@ export const Size = ({ sizes }) => {
 
   return (
     <div className="flex flex-col my-4">
-      <p className="mb-5">Size</p>
-      <div className="flex flex-wrap">
+      <p className="mb-3 text-lg font-semibold text-gray-700">Select Size</p>
+      <div className="flex flex-wrap gap-3">
         {sizes?.map((item, index) => (
-          <div className="flex flex-col" key={index}>
-            <div
-              key={index}
-              className="w-[50px] text-gray-500 text-center h-8 border border-gray-300 bg-white rounded-xl mr-4 cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => onClickDiv(item.size)}
-              style={
+          <div key={index} className="flex flex-col">
+            <button
+              className={`w-[50px] h-10 text-center font-medium rounded-lg cursor-pointer transition-all duration-200 bg-gray-200 text-gray-600
+              ${
                 appliedSizes.includes(item.size)
-                  ? { background: "black", color: "white" }
-                  : {}
-              }
+                  ? "ring-2 ring-gray-700 scale-105 shadow-lg"
+                  : "hover:bg-gray-200 hover:shadow-lg hover:scale-105"
+              }`}
+              onClick={() => onClickDiv(item.size)}
             >
-              {item.size  }
-            </div>
+              {item.size}
+            </button>
           </div>
         ))}
       </div>

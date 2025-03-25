@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoryReducer from "./features/categorySlice";
 import loadingReducer from "./features/loadingSlice";
-
+import cartReducer from "./features/cartSlice";
 const rootReducer = {
-  category: categoryReducer,
   loading: loadingReducer,
+  cart: cartReducer,
 };
 
 const store = configureStore({
