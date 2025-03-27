@@ -9,6 +9,7 @@ export const API_URLS = {
   AUTHENTICATION_LOGIN: "/api/auth/login",
   AUTHENTICATION_REGISTER: "/api/auth/register",
   AUTHENTICATION_VERIFY_CODE: "/api/auth/verify-code",
+  GET_USER_DETAILS: "/api/user/profile",
 };
 
 export const API_BASE_URL = "http://localhost:8080";

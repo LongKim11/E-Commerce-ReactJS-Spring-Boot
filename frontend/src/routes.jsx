@@ -9,6 +9,7 @@ import { Login } from "./pages/Login/Login";
 import { OAuth2LoginCallback } from "./pages/OAuth2LoginCallback/OAuth2LoginCallback";
 import { Cart } from "./pages/Cart/Cart";
 import { Account } from "./pages/Account/Account";
+import { Checkout } from "./pages/Checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       },
       { path: "cart", element: <Cart /> },
       { path: "account", element: <Account /> },
+      { path: "checkout", element: <Checkout /> },
     ],
   },
   {

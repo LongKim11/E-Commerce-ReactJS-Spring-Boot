@@ -10,7 +10,7 @@ export const Account = () => {
       console.log(isTokenValid);
       navigate("/auth/login");
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogOut = () => {
     logout();
