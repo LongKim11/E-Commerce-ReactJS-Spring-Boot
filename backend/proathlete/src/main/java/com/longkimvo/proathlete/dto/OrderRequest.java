@@ -20,4 +20,5 @@ public class OrderRequest {
     private List<OrderItemRequest> orderItemRequestList;
     private Double totalAmount;
     private Date expectedDeliveryDate;
+    private String paymentMethod;
 }

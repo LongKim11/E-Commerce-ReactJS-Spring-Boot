@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserDetails } from "../../api/userInfoAPI";
 import { setLoading } from "../../store/features/loadingSlice";
+import { Payment } from "../Payment/Payment";
 
 export const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.cart);
   const [userInfo, setUserInfo] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState([]);
   const [selectedDeliveryDay, setSelectedDeliveryDay] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   console.log("Cart Items: ", cartItems);
 
@@ -155,9 +157,9 @@ export const Checkout = () => {
             <h3 className="text-xl font-bold mb-3">Payment Method</h3>
             <div className="space-y-3">
               {[
-                "Credit/Debit Card",
-                "Cash On Delivery (COD)",
-                "UPI/Wallet",
+                { name: "Credit/Debit Card", value: "CARD" },
+                { name: "Cash On Delivery (COD)", value: "COD" },
+                { name: "UPI/Wallet", value: "UPI" },
               ].map((method, index) => (
                 <label
                   key={index}
@@ -167,16 +169,21 @@ export const Checkout = () => {
                     type="radio"
                     name="payment-method"
                     className="w-5 h-5"
+                    value={method.value}
+                    onChange={() => setPaymentMethod(method.value)}
                   />
-                  <span className="text-gray-700">{method}</span>
+                  <span className="text-gray-700">{method.name}</span>
                 </label>
               ))}
             </div>
           </div>
-
-          <button className="w-full py-3 text-lg font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all cursor-pointer">
-            Pay Now
-          </button>
+          {paymentMethod === "CARD" ? (
+            <Payment paymentMethod={paymentMethod}></Payment>
+          ) : (
+            <button className="w-full py-3 text-lg font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all cursor-pointer">
+              Confirm
+            </button>
+          )}
         </div>
 
         {/* RIGHT SECTION */}
@@ -209,7 +216,7 @@ export const Checkout = () => {
           </p>
           <p className="flex justify-between text-gray-700">
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>${total}</span>
           </p>
           <p className="flex justify-between text-gray-700">
             <span>Shipping Fee:</span>
@@ -218,7 +225,7 @@ export const Checkout = () => {
           <hr className="border-gray-300 my-4" />
           <p className="flex justify-between text-xl font-semibold">
             <span>Total Amount:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>${total}</span>
           </p>
         </div>
       </div>

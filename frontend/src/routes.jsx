@@ -10,6 +10,7 @@ import { OAuth2LoginCallback } from "./pages/OAuth2LoginCallback/OAuth2LoginCall
 import { Cart } from "./pages/Cart/Cart";
 import { Account } from "./pages/Account/Account";
 import { Checkout } from "./pages/Checkout/Checkout";
+import { Payment } from "./pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
