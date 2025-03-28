@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -34,4 +35,11 @@ public class OrderController {
 
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
+
+    @PostMapping("/update-payment")
+    public ResponseEntity<?> updatePaymentStatus (@RequestBody  Map<String, String> request) {
+        Map<String, String> response = orderService.updateStatus(request.get("paymentIntent"), request.get("status"));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

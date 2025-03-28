@@ -178,7 +178,11 @@ export const Checkout = () => {
             </div>
           </div>
           {paymentMethod === "CARD" ? (
-            <Payment paymentMethod={paymentMethod}></Payment>
+            <Payment
+              userID={userInfo.id}
+              addressID={selectedAddress.id}
+              expectedDeliveryDate={selectedDeliveryDay}
+            ></Payment>
           ) : (
             <button className="w-full py-3 text-lg font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all cursor-pointer">
               Confirm

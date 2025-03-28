@@ -9,6 +9,7 @@ import com.longkimvo.proathlete.enums.PaymentStatus;
 import com.longkimvo.proathlete.repositories.OrderRepository;
 import com.longkimvo.proathlete.repositories.ProductRepository;
 import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -87,5 +86,28 @@ public class OrderService {
 
         orderResponse.setOrder_id(newOrder.getId());
         return orderResponse;
+    }
+
+    public Map<String, String> updateStatus(String paymentIntentID, String status) {
+        try {
+            PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentID);
+            if (paymentIntent != null && paymentIntent.getStatus().equals("succeeded")) {
+               String orderID = paymentIntent.getMetadata().get("orderID");
+               Order order = orderRepository.findById(UUID.fromString(orderID)).orElseThrow(BadRequestException::new);
+               Payment payment = order.getPayment();
+               payment.setPaymentStatus(PaymentStatus.COMPLETED);
+               order.setPayment(payment);
+               Order savedOrder = orderRepository.save(order);
+               Map<String, String> map = new HashMap<>();
+               map.put("orderID", String.valueOf(savedOrder.getId()));
+               return map;
+            } else {
+                throw new IllegalStateException("Payment Intent not found or missing metadata");
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("Payment Intent not found or missing metadata");
+        }
+
+
     }
 }
