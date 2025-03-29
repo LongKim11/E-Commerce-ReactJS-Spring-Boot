@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AddressService {
@@ -31,5 +32,9 @@ public class AddressService {
                 .build();
 
         return addressRepository.save(address);
+    }
+
+    public void deleteAddress(UUID id) {
+        addressRepository.deleteById(id);
     }
 }

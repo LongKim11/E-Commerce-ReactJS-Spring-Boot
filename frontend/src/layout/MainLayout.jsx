@@ -10,10 +10,16 @@ export const MainLayout = () => {
 
   return (
     <>
+      {/* Header */}
       <Navigation />
+
+      {/* Main Content */}
       <Outlet />
+
+      {/* Footer */}
       <Footer />
 
+      {/* Loading Spinner */}
       {isLoading && <Spinner />}
     </>
   );

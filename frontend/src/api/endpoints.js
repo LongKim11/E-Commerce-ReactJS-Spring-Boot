@@ -11,7 +11,9 @@ export const API_URLS = {
   AUTHENTICATION_VERIFY_CODE: "/api/auth/verify-code",
   GET_USER_DETAILS: "/api/user/profile",
   CREATE_ORDER: "/api/orders",
-  CONFIRM_PAYMENT: "/api/orders/update-payment"
+  CONFIRM_PAYMENT: "/api/orders/update-payment",
+  ADD_NEW_ADDRESS: "/api/address",
+  DELETE_ADDRESS: (id) => `/api/address/${id}`,
 };
 
 export const API_BASE_URL = "http://localhost:8080";

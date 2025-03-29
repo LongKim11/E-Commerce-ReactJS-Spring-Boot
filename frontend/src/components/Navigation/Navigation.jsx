@@ -85,40 +85,40 @@ export const Navigation = ({ variant = "default" }) => {
         {variant == "default" && (
           <ul className="flex gap-8">
             <li>
-              <Link to="/wishlist">
-                <Wishlist />
-              </Link>
+              <NavLink to="/wishlist">
+                {({ isActive }) => <Wishlist isActive={isActive} />}
+              </NavLink>
             </li>
             <li>
-              <Link to="/account">
-                <AccountIcon />
-              </Link>
+              <NavLink to="/account/profile">
+                {({ isActive }) => <AccountIcon isActive={isActive} />}
+              </NavLink>
             </li>
-            <li>
-              <Link to="/cart" className="flex flex-wrap">
-                <CartIcon />
-                {cartLength > 0 && (
-                  <div className="absolute ml-6 inline-flex items-center justify-center h-6 w-6 bg-black text-white text-xs rounded-full border-2 border-white">
-                    {cartLength}
-                  </div>
-                )}
-              </Link>
+            <li className="relative">
+              <NavLink to="/cart">
+                {({ isActive }) => <CartIcon isActive={isActive} />}
+              </NavLink>
+              {cartLength > 0 && (
+                <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-2 h-6 w-6 bg-black text-white text-xs rounded-full border-2 border-white flex items-center justify-center">
+                  {cartLength}
+                </div>
+              )}
             </li>
           </ul>
         )}
 
         {variant == "authentication" && (
           <div className="flex gap-x-3">
-            <NavLink to="/auth/login">
+            <Link to="/auth/login">
               <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:hover:bg-slate-800">
                 Log in
               </button>
-            </NavLink>
-            <NavLink to="/auth/register">
+            </Link>
+            <Link to="/auth/register">
               <button className="border border-black text-black px-4 py-2 rounded-lg cursor-pointer hover:bg-slate-100">
                 Register
               </button>
-            </NavLink>
+            </Link>
           </div>
         )}
       </div>

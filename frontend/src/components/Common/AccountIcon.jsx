@@ -1,13 +1,13 @@
 import React from "react";
 
-export const AccountIcon = () => {
+export const AccountIcon = ({ isActive }) => {
   return (
     <svg
       width="44"
       height="44"
       viewBox="0 0 44 44"
       fill="none"
-      className="hover:fill-black"
+      className={`hover:fill-black ${isActive ? "fill-black" : ""}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="44" height="44" rx="8" fill="white" />

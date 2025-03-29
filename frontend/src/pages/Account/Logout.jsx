@@ -1,16 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { isTokenValid, logout } from "../../utils/jwt-helper";
+import { logout } from "../../utils/jwt-helper";
 
-export const Account = () => {
+export const Logout = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isTokenValid()) {
-      console.log(isTokenValid);
-      navigate("/auth/login");
-    }
-  }, [navigate]);
 
   const handleLogOut = () => {
     logout();
@@ -18,10 +11,7 @@ export const Account = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 shadow-lg rounded-lg mb-32 border border-slate-100">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-        Account Management
-      </h2>
+    <>
       <div className="flex justify-center">
         <img
           src="https://cdn-icons-png.flaticon.com/512/10477/10477736.png"
@@ -35,6 +25,6 @@ export const Account = () => {
       >
         Logout
       </button>
-    </div>
+    </>
   );
 };

@@ -8,11 +8,13 @@ import { Register } from "./pages/Register/Register";
 import { Login } from "./pages/Login/Login";
 import { OAuth2LoginCallback } from "./pages/OAuth2LoginCallback/OAuth2LoginCallback";
 import { Cart } from "./pages/Cart/Cart";
-import { Account } from "./pages/Account/Account";
 import { Checkout } from "./pages/Checkout/Checkout";
-import { Payment } from "./pages/Payment/Payment";
 import { ConfirmPayment } from "./pages/ConfirmPayment/ConfirmPayment";
 import { OrderConfirm } from "./pages/OrderConfirm/OrderConfirm";
+import { Profile } from "./pages/Account/Profile";
+import { Order } from "./pages/Account/Order";
+import { Logout } from "./pages/Account/Logout";
+import { AccountManagementLayout } from "./layout/AccountMangementLayout";
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +30,18 @@ export const router = createBrowserRouter([
         element: <ProductDetailPage />,
       },
       { path: "cart", element: <Cart /> },
-      { path: "account", element: <Account /> },
+      {
+        path: "account",
+        element: <AccountManagementLayout />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          { path: "orders", element: <Order /> },
+          { path: "logout", element: <Logout /> },
+        ],
+      },
       { path: "checkout", element: <Checkout /> },
       { path: "confirm-payment", element: <ConfirmPayment /> },
       { path: "confirm-order", element: <OrderConfirm /> },
