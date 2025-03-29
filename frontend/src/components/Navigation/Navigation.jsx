@@ -99,7 +99,7 @@ export const Navigation = ({ variant = "default" }) => {
                 {({ isActive }) => <CartIcon isActive={isActive} />}
               </NavLink>
               {cartLength > 0 && (
-                <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-2 h-6 w-6 bg-black text-white text-xs rounded-full border-2 border-white flex items-center justify-center">
+                <div className="absolute top-2 right-1 transform translate-x-2 -translate-y-2 h-6 w-6 bg-black text-white text-xs rounded-full border-2 border-white flex items-center justify-center">
                   {cartLength}
                 </div>
               )}

@@ -144,12 +144,16 @@ export const ProductDetailPage = () => {
           </div>
           <hr className="my-5"></hr>
           <div className="flex my-5">
-            <button className="bg-black rounded-lg w-[150px] px-2 cursor-pointer hover:bg-gray-800">
+            <button className="bg-black rounded-lg px-4 py-3 cursor-pointer hover:bg-gray-800">
               <div
-                className="flex items-center text-white"
+                className="flex items-center text-white gap-x-3"
                 onClick={addItemToCart}
               >
-                <CartIcon bgColor={"white"} />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/3643/3643914.png"
+                  alt="cart-icon"
+                  className="w-6 h-6"
+                ></img>
                 Add to cart
               </div>
             </button>
