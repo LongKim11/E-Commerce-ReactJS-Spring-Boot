@@ -33,3 +33,17 @@ export const confirmPayment = async (formData) => {
     throw new Error(err);
   }
 };
+
+export const getOrdersByUser = async () => {
+  try {
+    const token = getToken();
+    const response = await axiosInstance(API_URLS.GET_ORDERS_BY_USER, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (err) {
+    console.log("Error while fetching orders by user", err);
+    throw new Error(err);
+  }
+};

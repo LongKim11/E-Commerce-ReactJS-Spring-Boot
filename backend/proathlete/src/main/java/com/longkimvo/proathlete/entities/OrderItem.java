@@ -27,6 +27,15 @@ public class OrderItem {
     @Column(nullable = false)
     private UUID productVariantID;
 
+    @Column(nullable = true)
+    private String thumbnail;
+
+    @Column(nullable = true)
+    private String color;
+
+    @Column(nullable = true)
+    private String size;
+
     @ManyToOne
     @JoinColumn(name="order_id", nullable = false)
     @JsonIgnore

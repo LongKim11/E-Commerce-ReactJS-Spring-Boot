@@ -14,6 +14,8 @@ import java.util.UUID;
 public class OrderItemRequest {
     private UUID productID;
     private UUID productVariantID;
+    private String color;
+    private String size;
     private Integer quantity;
     private Double price;
     private Double subTotal;

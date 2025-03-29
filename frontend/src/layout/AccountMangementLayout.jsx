@@ -31,7 +31,7 @@ export const AccountManagementLayout = () => {
   }, [dispatch, navigate]);
 
   return (
-    <div className="max-w-5xl mx-auto mb-20">
+    <div className="max-w-5xl mx-auto mb-52">
       {userInfo?.email && (
         <>
           {/* Welcome Section */}

@@ -10,14 +10,11 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -40,6 +37,12 @@ public class OrderController {
     public ResponseEntity<?> updatePaymentStatus (@RequestBody  Map<String, String> request) {
         Map<String, String> response = orderService.updateStatus(request.get("paymentIntent"), request.get("status"));
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<Order>> getOrdersByUser(Principal principal) {
+        List<Order> orderDetails = orderService.getOrdersByUser(principal.getName());
+        return new ResponseEntity<>(orderDetails, HttpStatus.OK);
     }
 
 }

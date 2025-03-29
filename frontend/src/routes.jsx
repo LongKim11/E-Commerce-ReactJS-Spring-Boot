@@ -15,6 +15,7 @@ import { Profile } from "./pages/Account/Profile";
 import { Order } from "./pages/Account/Order";
 import { Logout } from "./pages/Account/Logout";
 import { AccountManagementLayout } from "./layout/AccountMangementLayout";
+import { WishList } from "./pages/WishList/WishList";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
         element: <ProductDetailPage />,
       },
       { path: "cart", element: <Cart /> },
+      { path: "wishlist", element: <WishList /> },
       {
         path: "account",
         element: <AccountManagementLayout />,

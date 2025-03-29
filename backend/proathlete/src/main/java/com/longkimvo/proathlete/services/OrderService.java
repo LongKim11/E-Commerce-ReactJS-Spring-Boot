@@ -7,13 +7,11 @@ import com.longkimvo.proathlete.entities.*;
 import com.longkimvo.proathlete.enums.OrderStatus;
 import com.longkimvo.proathlete.enums.PaymentStatus;
 import com.longkimvo.proathlete.repositories.OrderRepository;
-import com.longkimvo.proathlete.repositories.ProductRepository;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +53,9 @@ public class OrderService {
             return OrderItem.builder()
                     .product(product)
                     .productVariantID(orderItemRequest.getProductVariantID())
+                    .thumbnail(product.getResources().getFirst().getUrl())
+                    .size(orderItemRequest.getSize())
+                    .color(orderItemRequest.getColor())
                     .quantity(orderItemRequest.getQuantity())
                     .price(orderItemRequest.getPrice())
                     .subTotal(orderItemRequest.getSubTotal())
@@ -110,4 +111,11 @@ public class OrderService {
 
 
     }
+
+    public List<Order> getOrdersByUser(String name) {
+        User user = (User) userDetailsService.loadUserByUsername(name);
+
+        return orderRepository.findByUser(user);
+    }
+
 }

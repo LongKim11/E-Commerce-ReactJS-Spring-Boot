@@ -17,6 +17,8 @@ export const createOrderRequest = (
   let orderItemRequestList = cartItems.map((item) => ({
     productID: item.productID,
     productVariantID: item.variant[0].id,
+    color: item.variant[0].color,
+    size: item.variant[0].size,
     quantity: item.quantity,
     price: item.price,
     subTotal: item.subTotal,

@@ -75,10 +75,12 @@ export const Profile = () => {
         </div>
         <div className="mt-4 space-y-3">
           <div>
-            <p className="text-gray-500 font-semibold">Full Name</p>
-            <p className="text-gray-900">
-              {userInfo?.firstName} {userInfo?.lastName}
-            </p>
+            <p className="text-gray-500 font-semibold">Firstname</p>
+            <p className="text-gray-900">{userInfo?.firstName}</p>
+          </div>
+          <div>
+            <p className="text-gray-500 font-semibold">Lastname</p>
+            <p className="text-gray-900">{userInfo?.lastName}</p>
           </div>
           <div>
             <p className="text-gray-500 font-semibold">Phone Number</p>
