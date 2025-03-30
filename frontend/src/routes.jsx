@@ -16,6 +16,8 @@ import { Order } from "./pages/Account/Order";
 import { Logout } from "./pages/Account/Logout";
 import { AccountManagementLayout } from "./layout/AccountMangementLayout";
 import { WishList } from "./pages/WishList/WishList";
+import { AdminLayout } from "./layout/AdminLayout";
+import { Product } from "./pages/Admin/Product";
 
 export const router = createBrowserRouter([
   {
@@ -58,4 +60,9 @@ export const router = createBrowserRouter([
     ],
   },
   { path: "/oauth2/callback", element: <OAuth2LoginCallback /> },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [{ path: "product", element: <Product /> }],
+  },
 ]);
