@@ -38,6 +38,7 @@ const uniqueSize = (products) => {
 
 export const ProductListPage = ({ gender }) => {
   const [productList, setProductList] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [colorFilter, setColorFilter] = useState([]);
   const [sizeFilter, setSizeFilter] = useState([]);
@@ -49,6 +50,8 @@ export const ProductListPage = ({ gender }) => {
 
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(5000);
+
+  const [isFiltering, setIsFiltering] = useState(false);
 
   const handleColorSelect = (color) => {
     setSelectedColors((prev) =>
@@ -70,17 +73,64 @@ export const ProductListPage = ({ gender }) => {
     );
   };
 
+  const applyFilters = (products) => {
+    return products.filter((product) => {
+      if (
+        selectedCategories.length > 0 &&
+        !selectedCategories.includes(product.category.name)
+      ) {
+        return false;
+      }
+
+      if (product.price < minPrice || product.price > maxPrice) {
+        return false;
+      }
+
+      if (selectedColors.length > 0) {
+        const productColors = product.productVariantList.map(
+          (variant) => variant.color
+        );
+        const hasMatchingColor = selectedColors.some((color) =>
+          productColors.includes(color)
+        );
+        if (!hasMatchingColor) return false;
+      }
+
+      if (selectedSizes.length > 0) {
+        const productSizes = product.productVariantList.map(
+          (variant) => variant.size
+        );
+        const hasMatchingSize = selectedSizes.some((size) =>
+          productSizes.includes(size)
+        );
+        if (!hasMatchingSize) return false;
+      }
+      return true;
+    });
+  };
+
   const handleApplyFilters = () => {
-    const filters = {
+    const filtered = applyFilters(productList);
+    setFilteredProducts(filtered);
+    setIsFiltering(true);
+
+    console.log("Filters applied:", {
       categories: selectedCategories,
       colors: selectedColors,
       sizes: selectedSizes,
-      priceRange: {
-        min: minPrice,
-        max: maxPrice,
-      },
-    };
-    console.log("Filters to send to backend:", filters);
+      priceRange: { min: minPrice, max: maxPrice },
+    });
+    console.log("Filtered products count:", filtered.length);
+  };
+
+  const handleResetFilters = () => {
+    setSelectedCategories([]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setMinPrice(0);
+    setMaxPrice(5000);
+    setIsFiltering(false);
+    setFilteredProducts(productList);
   };
 
   useEffect(() => {
@@ -89,6 +139,7 @@ export const ProductListPage = ({ gender }) => {
       .then((res) => {
         console.log("Data: ", res);
         setProductList(res);
+        setFilteredProducts(res);
         setCategoryFilter(uniqueCategory(res));
         setColorFilter(uniqueColor(res));
         setSizeFilter(uniqueSize(res));
@@ -96,6 +147,8 @@ export const ProductListPage = ({ gender }) => {
       .catch((err) => console.log(err))
       .finally(() => dispatch(setLoading(false)));
   }, [gender, dispatch]);
+
+  const displayProducts = isFiltering ? filteredProducts : productList;
 
   return (
     <>
@@ -248,14 +301,7 @@ export const ProductListPage = ({ gender }) => {
           <div className="flex justify-center gap-x-3">
             <button
               className="w-1/2 px-4 py-2 text-white bg-gray-600 rounded-lg font-medium text-sm hover:bg-gray-700 transition-all focus:outline-none shadow-md cursor-pointer"
-              onClick={() => {
-                setSelectedCategories([]);
-                setSelectedColors([]);
-                setSelectedSizes([]);
-                setMinPrice(0);
-                setMaxPrice(5000);
-                console.log("Filters Reset");
-              }}
+              onClick={handleResetFilters}
             >
               Reset Filters
             </button>
@@ -269,10 +315,34 @@ export const ProductListPage = ({ gender }) => {
         </div>
 
         {/* Products */}
-        <div className="p-3">
-          <p className="text-lg font-bold">{gender} COLLECTIONS</p>
+        <div className="p-3 w-full">
+          <div className="flex items-center gap-x-5">
+            <p className="text-lg font-bold">{gender} COLLECTIONS</p>
+            {isFiltering && (
+              <p className="text-gray-600">
+                Showing {filteredProducts.length} of {productList.length}{" "}
+                products
+              </p>
+            )}
+          </div>
+
+          {/* No results message */}
+          {isFiltering && filteredProducts.length === 0 && (
+            <div className="mt-10 flex flex-col items-center justify-center text-center px-4">
+              <p className="text-xl text-gray-800 mb-4">
+                No products match your filters
+              </p>
+              <button
+                className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition cursor-pointer"
+                onClick={handleResetFilters}
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
+
           <div className="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {productList?.map((product, index) => (
+            {displayProducts?.map((product, index) => (
               <ProductCard key={index} data={product} />
             ))}
           </div>
