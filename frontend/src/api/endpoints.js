@@ -15,6 +15,7 @@ export const API_URLS = {
   ADD_NEW_ADDRESS: "/api/address",
   DELETE_ADDRESS: (id) => `/api/address/${id}`,
   GET_ORDERS_BY_USER: "/api/orders/user",
+  ADD_NEW_PRODUCT: "/api/product",
 };
 
 export const API_BASE_URL = "http://localhost:8080";

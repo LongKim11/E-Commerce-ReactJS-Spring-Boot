@@ -12,7 +12,7 @@ import { ReturnIcon } from "../../components/Common/ReturnIcon";
 import { ProductCard } from "../ProductListPage/ProductCard";
 import { getProductByID } from "../../api/productAPI";
 import { getProductByCategory } from "../../api/productAPI";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLoading } from "../../store/features/loadingSlice";
 import { addToCart } from "../../store/features/cartSlice";
 
@@ -105,9 +105,10 @@ export const ProductDetailPage = () => {
                     onClick={() => setCurrentImage(resource.url)}
                   >
                     <img
-                      src={currentImage}
+                      src={resource.url}
+                      alt={`Product Image ${index + 1}`}
                       className="h-[60px] w-[60px] bg-cover bg-center p-2"
-                    ></img>
+                    />
                   </button>
                 ))}
               </div>

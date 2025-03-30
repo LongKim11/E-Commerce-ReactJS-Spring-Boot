@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import { API_URLS } from "./endpoints";
+import { getToken } from "../utils/jwt-helper";
 
 const getAllProduct = async () => {
   try {
@@ -46,9 +47,24 @@ const getProductByCategory = async (categoryID) => {
   }
 };
 
+const addNewProduct = async (formData) => {
+  try {
+    console.log("Form data", formData);
+    const response = await axiosInstance(API_URLS.ADD_NEW_PRODUCT, {
+      method: "POST",
+      data: formData,
+    });
+    return response.data;
+  } catch (err) {
+    console.log("Error while adding new product");
+    throw new Error(err);
+  }
+};
+
 export {
   getAllProduct,
   getProductByGender,
   getProductByID,
   getProductByCategory,
+  addNewProduct,
 };

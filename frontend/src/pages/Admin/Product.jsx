@@ -12,6 +12,8 @@ import { getAllProduct } from "../../api/productAPI";
 import { setLoading } from "../../store/features/loadingSlice";
 import { useDispatch } from "react-redux";
 import { getAllCategory } from "../../api/categoryAPI";
+import { handleUploadFile } from "../../services/UploadFile";
+import { addNewProduct } from "../../api/productAPI";
 
 export const Product = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -31,8 +33,9 @@ export const Product = () => {
         stockQuantity: "",
       },
     ],
-    images: [],
   });
+
+  const [uploadImg, setUploadImg] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -79,10 +82,7 @@ export const Product = () => {
   const handleImagesUpload = (e) => {
     const files = Array.from(e.target.files);
     if (files.length > 0) {
-      setNewProduct({
-        ...newProduct,
-        images: [...files],
-      });
+      setUploadImg([...files]);
     }
   };
 
@@ -107,6 +107,32 @@ export const Product = () => {
   useEffect(() => {
     console.log("New Product", newProduct);
   }, [newProduct]);
+
+  const handleAddProduct = async () => {
+    if (uploadImg.length === 0) {
+      return;
+    }
+
+    dispatch(setLoading(true));
+    try {
+      dispatch(setLoading(true));
+      const uploadUrls = await handleUploadFile(uploadImg);
+
+      const newProductData = {
+        ...newProduct,
+        resourceList: uploadUrls.map((url) => ({ url })),
+      };
+
+      const res = await addNewProduct(newProductData);
+      console.log("Add product", res);
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error adding product:", error);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -378,11 +404,10 @@ export const Product = () => {
                     <p className="text-xs text-gray-500 mt-1">
                       PNG, JPG, GIF up to 10MB
                     </p>
-                    {newProduct.images.length > 0 && (
+                    {uploadImg?.length > 0 && (
                       <p className="text-xs text-green-500 mt-1 font-medium">
-                        {newProduct.images.length}{" "}
-                        {newProduct.images.length === 1 ? "file" : "files"}{" "}
-                        selected
+                        {uploadImg.length}{" "}
+                        {uploadImg.length === 1 ? "file" : "files"} selected
                       </p>
                     )}
                   </div>
@@ -396,20 +421,20 @@ export const Product = () => {
                   />
                 </div>
 
-                {/* Hiển thị tên file đã chọn (tuỳ chọn) */}
-                {newProduct.images.length > 0 && (
+                {/* Show Upload Filename */}
+                {uploadImg?.length > 0 && (
                   <div className="mt-2 text-sm text-gray-600">
                     <p className="font-medium">Selected files:</p>
                     <ul className="list-disc mt-1">
-                      {newProduct.images
+                      {uploadImg
                         .map((file, index) => (
                           <li key={index} className="truncate mt-2">
                             - {file.name}
                           </li>
                         ))
                         .slice(0, 3)}
-                      {newProduct.images.length > 3 && (
-                        <li>+{newProduct.images.length - 3} more files</li>
+                      {uploadImg.length > 3 && (
+                        <li>+{uploadImg.length - 3} more files</li>
                       )}
                     </ul>
                   </div>
@@ -509,7 +534,10 @@ export const Product = () => {
               >
                 Cancel
               </button>
-              <button className="px-4 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-md cursor-pointer">
+              <button
+                className="px-4 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-md cursor-pointer"
+                onClick={handleAddProduct}
+              >
                 Save Product
               </button>
             </div>
