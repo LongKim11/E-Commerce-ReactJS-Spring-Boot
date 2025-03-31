@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Wishlist } from "../Common/Wishlist";
 import { CartIcon } from "../Common/CartIcon";
 import { AccountIcon } from "../Common/AccountIcon";
@@ -10,22 +10,52 @@ import { useSelector } from "react-redux";
 export const Navigation = ({ variant = "default" }) => {
   const cartItems = useSelector((state) => state.cart.cart);
   const cartLength = cartItems.length;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
-    <nav className="flex items-center justify-between py-2 px-16 gap-56">
+    <nav className="flex flex-wrap items-center justify-between py-2 px-4 md:px-8 lg:px-16">
       {/* Logo */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 md:gap-6">
         <NavLink to="/">
           <Logo />
         </NavLink>
-        <NavLink className="text-3xl text-black font-bold gap-8" to="/">
+        <NavLink className="text-xl md:text-3xl text-black font-bold" to="/">
           ProAthlete
         </NavLink>
       </div>
-      {/* Nav items */}
-      <div className="flex flex-wrap flex-1 items-center gap-10">
-        <ul className="flex gap-14">
-          <li className="text-gray-500 hover:text-black">
+
+      {/* Mobile menu button */}
+      <div className="block lg:hidden">
+        <button
+          onClick={toggleMobileMenu}
+          className="flex items-center px-3 py-2 border rounded text-black border-black hover:text-gray-500 hover:border-gray-500"
+        >
+          <svg
+            className="fill-current h-5 w-5"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {mobileMenuOpen ? (
+              <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+            ) : (
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Nav items - desktop */}
+      <div
+        className={`lg:flex flex-grow lg:flex-grow-0 items-center w-full lg:w-auto ${
+          mobileMenuOpen ? "flex flex-col" : "hidden"
+        }`}
+      >
+        <ul className="flex flex-col lg:flex-row lg:gap-8 xl:gap-14 mt-4 lg:mt-0">
+          <li className="text-gray-500 hover:text-black py-2 lg:py-0">
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -33,7 +63,7 @@ export const Navigation = ({ variant = "default" }) => {
               Shop
             </NavLink>
           </li>
-          <li className="text-gray-500 hover:text-black">
+          <li className="text-gray-500 hover:text-black py-2 lg:py-0">
             <NavLink
               to="/men"
               className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -41,7 +71,7 @@ export const Navigation = ({ variant = "default" }) => {
               Men
             </NavLink>
           </li>
-          <li className="text-gray-500 hover:text-black">
+          <li className="text-gray-500 hover:text-black py-2 lg:py-0">
             <NavLink
               to="/women"
               className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -49,7 +79,7 @@ export const Navigation = ({ variant = "default" }) => {
               Women
             </NavLink>
           </li>
-          <li className="text-gray-500 hover:text-black">
+          <li className="text-gray-500 hover:text-black py-2 lg:py-0">
             <NavLink
               to="/kids"
               className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -59,10 +89,15 @@ export const Navigation = ({ variant = "default" }) => {
           </li>
         </ul>
       </div>
+
       {/* Search bar */}
-      <div className="flex justify-center rounded-md bg-gray-100">
-        <div className="flex overflow-hidden">
-          <div className="flex items-center justify-center px-4">
+      <div
+        className={`rounded-md bg-gray-100 w-full lg:w-auto mt-4 lg:mt-0 ${
+          mobileMenuOpen ? "flex" : "hidden lg:flex"
+        }`}
+      >
+        <div className="flex overflow-hidden w-full">
+          <div className="flex items-center justify-center px-4 w-full">
             <svg
               className="h-4 w-4 text-gray-500"
               fill="currentColor"
@@ -73,7 +108,7 @@ export const Navigation = ({ variant = "default" }) => {
             </svg>
             <input
               type="text"
-              className="px-4 py-2 outline-none"
+              className="px-4 py-2 outline-none w-full"
               placeholder="Search"
             />
           </div>
@@ -81,7 +116,11 @@ export const Navigation = ({ variant = "default" }) => {
       </div>
 
       {/* Action Items - Icons */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div
+        className={`flex flex-wrap items-center mt-4 lg:mt-0 ${
+          mobileMenuOpen ? "flex w-full justify-start" : "hidden lg:flex"
+        }`}
+      >
         {variant == "default" && (
           <ul className="flex gap-8">
             <li>
@@ -108,14 +147,14 @@ export const Navigation = ({ variant = "default" }) => {
         )}
 
         {variant == "authentication" && (
-          <div className="flex gap-x-3">
-            <Link to="/auth/login">
-              <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:hover:bg-slate-800">
+          <div className="flex gap-x-3 w-full lg:w-auto">
+            <Link to="/auth/login" className="w-full lg:w-auto">
+              <button className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-slate-800 w-full">
                 Log in
               </button>
             </Link>
-            <Link to="/auth/register">
-              <button className="border border-black text-black px-4 py-2 rounded-lg cursor-pointer hover:bg-slate-100">
+            <Link to="/auth/register" className="w-full lg:w-auto">
+              <button className="border border-black text-black px-4 py-2 rounded-lg cursor-pointer hover:bg-slate-100 w-full">
                 Register
               </button>
             </Link>
