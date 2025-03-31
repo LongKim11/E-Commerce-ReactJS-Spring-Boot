@@ -10,6 +10,7 @@
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
     import org.springframework.security.core.Authentication;
+    import org.springframework.security.core.GrantedAuthority;
     import org.springframework.security.core.annotation.AuthenticationPrincipal;
     import org.springframework.security.core.context.SecurityContextHolder;
     import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -20,6 +21,7 @@
 
     import java.io.IOException;
     import java.util.Collections;
+    import java.util.List;
 
     @RestController
     @CrossOrigin
@@ -45,7 +47,11 @@
                 user = oAuth2Service.createUser(oAuth2User, "google");
             }
 
-            String token = jwtTokenHelper.generateToken(user.getUsername());
+            List<String> roles = user.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList();
+
+            String token = jwtTokenHelper.generateToken(user.getEmail(), roles);
 
             response.sendRedirect("http://localhost:5173/oauth2/callback?token=" + token);
         }

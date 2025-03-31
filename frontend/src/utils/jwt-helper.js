@@ -28,3 +28,8 @@ export const logout = () => {
 export const getToken = () => {
   return localStorage.getItem("token");
 };
+
+export const authorize = (token) => {
+  const decodedToken = jwtDecode(token);
+  return decodedToken.roles;
+};

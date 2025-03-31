@@ -12,7 +12,7 @@ export const ProductCard = ({ data }) => {
         <img
           src={data.resources[0].url}
           alt={data.name}
-          className="w-full aspect-[3/4] object-cover rounded transform transition-transform duration-300 group-hover:scale-105"
+          className="w-full aspect-[3/4] object-cover rounded-lg transform transition-transform duration-300 group-hover:scale-105"
         />
       </Link>
 

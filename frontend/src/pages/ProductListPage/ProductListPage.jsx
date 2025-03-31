@@ -29,7 +29,7 @@ const uniqueSize = (products) => {
   return products?.reduce((acc, product) => {
     for (let s of product.productVariantList) {
       if (!acc.includes(s.size)) {
-        acc.push({ size: s.size });
+        acc.push(s.size);
       }
     }
     return acc;
@@ -281,17 +281,17 @@ export const ProductListPage = ({ gender }) => {
           <div className="mb-10">
             <p className="text-lg font-medium text-gray-800">Select Size</p>
             <div className="flex flex-wrap gap-2 mt-3">
-              {sizeFilter?.map((item, index) => (
+              {sizeFilter?.map((size, index) => (
                 <button
                   key={index}
                   className={`w-12 h-10 text-gray-700 rounded-lg text-center font-medium cursor-pointer transition-all border ${
-                    selectedSizes.includes(item.size)
+                    selectedSizes.includes(size)
                       ? "bg-black text-white border-black scale-105 shadow-md"
                       : "bg-gray-200 border-gray-300"
                   }`}
-                  onClick={() => handleSizeSelect(item.size)}
+                  onClick={() => handleSizeSelect(size)}
                 >
-                  {item.size}
+                  {size}
                 </button>
               ))}
             </div>

@@ -5,6 +5,7 @@ import com.longkimvo.proathlete.auth.dto.LoginRequest;
 import com.longkimvo.proathlete.auth.dto.RegistrationRequest;
 import com.longkimvo.proathlete.auth.dto.RegistrationResponse;
 import com.longkimvo.proathlete.auth.dto.UserToken;
+import com.longkimvo.proathlete.auth.entities.Authority;
 import com.longkimvo.proathlete.auth.entities.User;
 import com.longkimvo.proathlete.auth.repositories.UserDetailsRepository;
 import com.longkimvo.proathlete.auth.services.RegistrationService;
@@ -16,10 +17,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -41,27 +45,35 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
         try {
+
             Authentication authentication = UsernamePasswordAuthenticationToken
                     .unauthenticated(loginRequest.getUsername(), loginRequest.getPassword());
 
             Authentication authenticationResponse = this.authenticationManager.authenticate(authentication);
 
             if (authenticationResponse.isAuthenticated()) {
+
                 User user = (User) authenticationResponse.getPrincipal();
 
                 if (!user.isEnabled()) {
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
                 }
 
-                String token = jwtTokenHelper.generateToken(user.getEmail());
+                List<String> roles = user.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .toList();
+
+                String token = jwtTokenHelper.generateToken(user.getEmail(), roles);
 
                 UserToken userToken = UserToken.builder().token(token).build();
                 return new ResponseEntity<>(userToken, HttpStatus.OK);
             }
 
         } catch (BadCredentialsException e) {
+
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 

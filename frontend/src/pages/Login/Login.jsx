@@ -6,6 +6,7 @@ import { setLoading } from "../../store/features/loadingSlice";
 import { login } from "../../api/authenticationAPI";
 import { saveToken } from "../../utils/jwt-helper";
 import { API_BASE_URL } from "../../api/endpoints";
+import { authorize } from "../../utils/jwt-helper";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -21,7 +22,12 @@ export const Login = () => {
       .then((res) => {
         if (res?.token) {
           saveToken(res.token);
-          navigate("/");
+          const roles = authorize(res.token);
+          if (roles.includes("ADMIN")) {
+            navigate("/admin");
+          } else if (roles.includes("USER")) {
+            navigate("/");
+          }
         }
       })
       .catch(() => {

@@ -12,10 +12,13 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Spinner } from "../components/Spinner/Spinner";
+import { logout } from "../utils/jwt-helper";
+import { useNavigate } from "react-router-dom";
 
 export const AdminLayout = () => {
   const location = useLocation();
   const isLoading = useSelector((state) => state.loading.isLoading);
+  const navigate = useNavigate();
 
   const menuItems = [
     { name: "Dashboard", path: "/admin", icon: <FaHome /> },
@@ -25,6 +28,11 @@ export const AdminLayout = () => {
     { name: "Analytics", path: "/admin/income", icon: <FaChartLine /> },
     { name: "Settings", path: "/admin/settings", icon: <FaCog /> },
   ];
+
+  const handleLogOut = () => {
+    logout();
+    navigate("/auth/login");
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -123,13 +131,13 @@ export const AdminLayout = () => {
               <p className="text-xs text-gray-500">admin@proathlete.com</p>
             </div>
           </div>
-          <Link
-            to="/logout"
-            className="flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200 group"
+          <button
+            className="cursor-pointer flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200 group"
+            onClick={handleLogOut}
           >
             <FaSignOutAlt className="mr-2 text-gray-500 group-hover:text-gray-700" />
             Sign Out
-          </Link>
+          </button>
         </div>
       </aside>
 
