@@ -81,7 +81,12 @@ export const Cart = () => {
                         id="decrement-button"
                         className="bg-gray-700 text-white w-8 h-8 hover:bg-gray-800 rounded-full flex items-center justify-center"
                         onClick={() =>
-                          dispatch(decreaseQuantity(item.productID))
+                          dispatch(
+                            decreaseQuantity({
+                              productID: item.productID,
+                              variant: { id: item.variant[0].id },
+                            })
+                          )
                         }
                       >
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 18 2">
@@ -104,7 +109,12 @@ export const Cart = () => {
                         id="increment-button"
                         className="bg-gray-700 text-white w-8 h-8 hover:bg-gray-800 rounded-full flex items-center justify-center"
                         onClick={() =>
-                          dispatch(increaseQuantity(item.productID))
+                          dispatch(
+                            increaseQuantity({
+                              productID: item.productID,
+                              variant: { id: item.variant[0].id },
+                            })
+                          )
                         }
                       >
                         <svg
@@ -130,7 +140,14 @@ export const Cart = () => {
                   <td>
                     <button
                       className="flex justify-center items-center cursor-pointer w-full"
-                      onClick={() => dispatch(removeFromCart(item.productID))}
+                      onClick={() =>
+                        dispatch(
+                          removeFromCart({
+                            productID: item.productID,
+                            variant: { id: item.variant[0].id },
+                          })
+                        )
+                      }
                     >
                       <DeleteIcon />
                     </button>

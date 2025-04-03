@@ -117,7 +117,7 @@ export const ProductDetailPage = () => {
               {/* Current Image */}
               <img
                 src={currentImage}
-                className="h-[520px] w-full rounded-lg object-cover"
+                className="h-[720px] w-full rounded-lg object-cover"
               />
             </div>
           </div>

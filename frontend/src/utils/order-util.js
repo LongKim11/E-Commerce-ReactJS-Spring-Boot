@@ -2,12 +2,13 @@ export const createOrderRequest = (
   cartItems,
   userID,
   addressID,
-  expectedDeliveryDate
+  expectedDeliveryDate,
+  paymentMethod = "CARD"
 ) => {
   let request = {
     userID: userID,
     addressID: addressID,
-    paymentMethod: "CARD",
+    paymentMethod: paymentMethod,
   };
 
   const date = new Date(expectedDeliveryDate);

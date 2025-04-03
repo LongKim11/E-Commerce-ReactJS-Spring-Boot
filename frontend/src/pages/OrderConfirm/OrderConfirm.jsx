@@ -1,11 +1,16 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteAllCartItems } from "../../store/features/cartSlice";
 
 export const OrderConfirm = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const orderID = query.get("orderID");
   const navigate = useNavigate("");
+
+  const dispatch = useDispatch();
+  dispatch(deleteAllCartItems());
 
   return (
     <div className="flex justify-center items-center min-h-[80vh] bg-gray-100 ">

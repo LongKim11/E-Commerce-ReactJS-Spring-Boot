@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserDetails } from "../../api/userInfoAPI";
 import { setLoading } from "../../store/features/loadingSlice";
 import { Payment } from "../Payment/Payment";
+import { createOrderRequest } from "../../utils/order-util";
+import { createOrder } from "../../api/orderAPI";
+import { useNavigate } from "react-router-dom";
 
 export const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.cart);
@@ -10,6 +13,7 @@ export const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState([]);
   const [selectedDeliveryDay, setSelectedDeliveryDay] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const navigate = useNavigate();
 
   console.log("Cart Items: ", cartItems);
 
@@ -30,6 +34,34 @@ export const Checkout = () => {
       .catch((err) => console.log(err))
       .finally(() => dispatch(setLoading(false)));
   }, []);
+
+  const handleCODPayment = () => {
+    const userID = userInfo.id;
+    const addressID = selectedAddress.id;
+    const expectedDeliveryDate = selectedDeliveryDay;
+
+    const paymentMethod = "COD";
+
+    const orderRequest = createOrderRequest(
+      cartItems,
+      userID,
+      addressID,
+      expectedDeliveryDate,
+      paymentMethod
+    );
+
+    console.log("Order Request:", orderRequest);
+
+    dispatch(setLoading(true));
+
+    createOrder(orderRequest)
+      .then((res) => {
+        console.log("Payment response", res);
+        navigate(`/confirm-order?orderID=${res.order_id}`);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => dispatch(setLoading(false)));
+  };
 
   return (
     <div className="p-10 w-[90%] mx-auto bg-gray-100 rounded-lg shadow-lg mb-32 mt-5">
@@ -159,7 +191,6 @@ export const Checkout = () => {
               {[
                 { name: "Credit/Debit Card", value: "CARD" },
                 { name: "Cash On Delivery (COD)", value: "COD" },
-                { name: "UPI/Wallet", value: "UPI" },
               ].map((method, index) => (
                 <label
                   key={index}
@@ -184,7 +215,10 @@ export const Checkout = () => {
               expectedDeliveryDate={selectedDeliveryDay}
             ></Payment>
           ) : (
-            <button className="w-full py-3 text-lg font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all cursor-pointer">
+            <button
+              className="w-full py-3 text-lg font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all cursor-pointer"
+              onClick={handleCODPayment}
+            >
               Confirm
             </button>
           )}
