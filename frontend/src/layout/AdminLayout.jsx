@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { Logo } from "../components/Common/Logo";
 import {
@@ -10,29 +10,52 @@ import {
   FaCog,
   FaChartLine,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "../components/Spinner/Spinner";
 import { logout } from "../utils/jwt-helper";
 import { useNavigate } from "react-router-dom";
+import { getUserDetails } from "../api/userInfoAPI";
+import { loadUserInfo } from "../store/features/userSlice";
+import { setLoading } from "../store/features/loadingSlice";
+import { isTokenValid } from "../utils/jwt-helper";
 
 export const AdminLayout = () => {
   const location = useLocation();
   const isLoading = useSelector((state) => state.loading.isLoading);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.userInfo);
 
   const menuItems = [
-    { name: "Dashboard", path: "/admin", icon: <FaHome /> },
+    { name: "Dashboard", path: "/admin/dashboard", icon: <FaHome /> },
     { name: "Products", path: "/admin/product", icon: <FaBox /> },
-    { name: "Orders", path: "/admim/order", icon: <FaShoppingCart /> },
-    { name: "Customers", path: "/admin/customer", icon: <FaUsers /> },
-    { name: "Analytics", path: "/admin/income", icon: <FaChartLine /> },
-    { name: "Settings", path: "/admin/settings", icon: <FaCog /> },
+    { name: "Orders", path: "/admin/orders", icon: <FaShoppingCart /> },
+    { name: "Customers", path: "#", icon: <FaUsers /> },
+    { name: "Analytics", path: "#", icon: <FaChartLine /> },
+    { name: "Settings", path: "#", icon: <FaCog /> },
   ];
 
   const handleLogOut = () => {
     logout();
     navigate("/auth/login");
   };
+
+  useEffect(() => {
+    if (!isTokenValid) {
+      navigate("/auth/login");
+    } else {
+      dispatch(setLoading(true));
+      getUserDetails()
+        .then((res) => {
+          console.log("User Details", res);
+          dispatch(loadUserInfo(res));
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => dispatch(setLoading(false)));
+    }
+  }, [dispatch, navigate]);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -127,8 +150,10 @@ export const AdminLayout = () => {
               <span className="text-sm font-bold">AD</span>
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-800">Admin User</p>
-              <p className="text-xs text-gray-500">admin@proathlete.com</p>
+              <p className="text-sm font-medium text-gray-800">
+                {userInfo.firstName} {userInfo.lastName}
+              </p>
+              <p className="text-xs text-gray-500">{userInfo.email}</p>
             </div>
           </div>
           <button

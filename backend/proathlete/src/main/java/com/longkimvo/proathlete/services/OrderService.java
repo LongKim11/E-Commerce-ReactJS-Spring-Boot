@@ -1,6 +1,8 @@
 package com.longkimvo.proathlete.services;
 
+import com.longkimvo.proathlete.auth.entities.Authority;
 import com.longkimvo.proathlete.auth.entities.User;
+import com.longkimvo.proathlete.dto.OrderDeliveryStatusRequest;
 import com.longkimvo.proathlete.dto.OrderRequest;
 import com.longkimvo.proathlete.dto.OrderResponse;
 import com.longkimvo.proathlete.entities.*;
@@ -12,8 +14,10 @@ import com.stripe.model.PaymentIntent;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.security.Principal;
 import java.util.*;
@@ -118,4 +122,24 @@ public class OrderService {
         return orderRepository.findByUser(user);
     }
 
+    public List<Order> getAllOrders(String name) {
+        User user = (User) userDetailsService.loadUserByUsername(name);
+        List<String> roles = user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+        for (String a : roles) {
+            if (a.equals("ADMIN")) {
+                return orderRepository.findAll();
+            }
+        }
+        return null;
+    }
+
+
+    public Order updateOrderDeliveryStatus(UUID id, OrderDeliveryStatusRequest orderDeliveryStatusRequest) {
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+
+        order.setOrderStatus(orderDeliveryStatusRequest.getStatus());
+        return orderRepository.save(order);
+    }
 }

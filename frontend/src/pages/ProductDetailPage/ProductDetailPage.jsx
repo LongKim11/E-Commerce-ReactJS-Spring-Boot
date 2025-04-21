@@ -188,7 +188,7 @@ export const ProductDetailPage = () => {
       </div>
       <div className="p-10">
         <p className="text-3xl">| Similar Product</p>
-        <div className="flex gap-12 mt-5">
+        <div className="grid md:grid-cols-5 gap-12 mt-5">
           {similarProduct?.map((product, index) => (
             <ProductCard key={index} data={product} />
           ))}

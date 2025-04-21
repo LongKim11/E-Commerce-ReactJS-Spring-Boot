@@ -47,3 +47,35 @@ export const getOrdersByUser = async () => {
     throw new Error(err);
   }
 };
+
+export const getAllOrder = async () => {
+  try {
+    const token = getToken();
+    const response = await axiosInstance(API_URLS.GET_ALL_ORDERS, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (err) {
+    console.log("Error while fetching orders by user", err);
+    throw new Error(err);
+  }
+};
+
+export const updateOrderDeliveryStatus = async (id, formData) => {
+  try {
+    const token = getToken();
+    const response = await axiosInstance(
+      API_URLS.UPDATE_ORDER_DELIVERY_STATUS(id),
+      {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        data: formData,
+      }
+    );
+    return response.data;
+  } catch (err) {
+    console.log("Error while fetching orders by user", err);
+    throw new Error(err);
+  }
+};

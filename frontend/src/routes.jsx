@@ -18,6 +18,8 @@ import { AccountManagementLayout } from "./layout/AccountMangementLayout";
 import { WishList } from "./pages/WishList/WishList";
 import { AdminLayout } from "./layout/AdminLayout";
 import { Product } from "./pages/Admin/Product";
+import { Dashboard } from "./pages/Admin/Dashboard";
+import { OrdersMangement } from "./pages/Admin/OrdersMangement";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +65,10 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLayout />,
-    children: [{ path: "product", element: <Product /> }],
+    children: [
+      { path: "product", element: <Product /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "orders", element: <OrdersMangement /> },
+    ],
   },
 ]);

@@ -15,6 +15,8 @@ export const API_URLS = {
   ADD_NEW_ADDRESS: "/api/address",
   DELETE_ADDRESS: (id) => `/api/address/${id}`,
   GET_ORDERS_BY_USER: "/api/orders/user",
+  GET_ALL_ORDERS: "/api/orders",
+  UPDATE_ORDER_DELIVERY_STATUS: (id) => `/api/orders/${id}`,
   ADD_NEW_PRODUCT: "/api/product",
 };
 

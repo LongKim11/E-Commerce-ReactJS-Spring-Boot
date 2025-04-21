@@ -1,5 +1,6 @@
 package com.longkimvo.proathlete.controllers;
 
+import com.longkimvo.proathlete.dto.OrderDeliveryStatusRequest;
 import com.longkimvo.proathlete.dto.OrderRequest;
 import com.longkimvo.proathlete.dto.OrderResponse;
 import com.longkimvo.proathlete.entities.Order;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -45,4 +47,18 @@ public class OrderController {
         return new ResponseEntity<>(orderDetails, HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders(Principal principal) {
+        List<Order> orders = orderService.getAllOrders(principal.getName());
+        if (orders == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Order> updateOrderDeliveryStatus(@PathVariable UUID id, @RequestBody OrderDeliveryStatusRequest orderDeliveryStatusRequest) {
+        Order updatedOrder = orderService.updateOrderDeliveryStatus(id, orderDeliveryStatusRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
