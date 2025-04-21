@@ -25,6 +25,12 @@
 - **Use Case Diagram**
   ![UseCase](snapshot/MainUseCase.jpg)
 
+- **ERD**
+  ![ERD](snapshot/ERD.jpg)
+
+- **Database Schema**
+  ![DBSchema](snapshot/DBSchema.jpg)
+
 ## 4. Software Development Principles
 
 - Applied **SOLID principles** for maintainability and scalability.
