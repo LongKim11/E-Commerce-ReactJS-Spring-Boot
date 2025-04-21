@@ -24,7 +24,7 @@ export const Login = () => {
           saveToken(res.token);
           const roles = authorize(res.token);
           if (roles.includes("ADMIN")) {
-            navigate("/admin");
+            navigate("/admin/dashboard");
           } else if (roles.includes("USER")) {
             navigate("/");
           }
