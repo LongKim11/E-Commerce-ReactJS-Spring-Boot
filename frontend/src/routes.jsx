@@ -15,7 +15,6 @@ import { Profile } from "./pages/Account/Profile";
 import { Order } from "./pages/Account/Order";
 import { Logout } from "./pages/Account/Logout";
 import { AccountManagementLayout } from "./layout/AccountMangementLayout";
-import { WishList } from "./pages/WishList/WishList";
 import { AdminLayout } from "./layout/AdminLayout";
 import { Product } from "./pages/Admin/Product";
 import { Dashboard } from "./pages/Admin/Dashboard";
@@ -35,7 +34,7 @@ export const router = createBrowserRouter([
         element: <ProductDetailPage />,
       },
       { path: "cart", element: <Cart /> },
-      { path: "wishlist", element: <WishList /> },
+
       {
         path: "account",
         element: <AccountManagementLayout />,

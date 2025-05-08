@@ -17,9 +17,15 @@ public class OAuth2Service {
     private AuthorityService authorityService;
 
     public User createUser(OAuth2User oAuth2User, String provider) {
+        System.out.println("OAuth2User " + oAuth2User);
         String firstName = oAuth2User.getAttribute("given_name");
         String lastName = oAuth2User.getAttribute("family_name");
         String email = oAuth2User.getAttribute("email");
+
+        System.out.println("Firstname " + firstName);
+        System.out.println("Lastname " + lastName);
+        System.out.println("Email " + email);
+        System.out.println("Authorities" + authorityService.getUserAuthority());
 
         User user = User.builder()
                 .firstName(firstName)

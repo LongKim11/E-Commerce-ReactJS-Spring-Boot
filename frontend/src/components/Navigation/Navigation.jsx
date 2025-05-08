@@ -123,10 +123,8 @@ export const Navigation = ({ variant = "default" }) => {
       >
         {variant == "default" && (
           <ul className="flex gap-8">
-            <li>
-              <NavLink to="/wishlist">
-                {({ isActive }) => <Wishlist isActive={isActive} />}
-              </NavLink>
+            <li className="cursor-pointer">
+              <Wishlist />
             </li>
             <li>
               <NavLink to="/account/profile">
