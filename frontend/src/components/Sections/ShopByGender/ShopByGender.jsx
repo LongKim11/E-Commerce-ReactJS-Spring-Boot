@@ -21,7 +21,7 @@ export const ShopByGender = () => {
               <img
                 src={item.imagePath}
                 alt={item.title}
-                className="rounded-lg w-full h-[700px] object-cover"
+                className="rounded-lg w-full h-[500px] object-cover"
               />
               <div className="absolute top-0 left-0 right-0 bottom-0 items-center flex justify-center">
                 <p className="text-white text-2xl">{item.title}</p>

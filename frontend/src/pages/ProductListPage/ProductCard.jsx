@@ -18,7 +18,11 @@ export const ProductCard = ({ data }) => {
 
       <div className="flex justify-between items-center mt-3 w-full">
         <div className="flex flex-col">
-          <p className="text-md font-medium truncate">{data.name}</p>
+          <p className="text-md font-medium truncate">
+            {data?.name?.length > 20
+              ? data.name.slice(0, 21) + "..."
+              : data.name}
+          </p>
           {data.description && (
             <p className="text-sm text-gray-500 truncate">{data.brand}</p>
           )}
