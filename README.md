@@ -1,89 +1,125 @@
-# 52200226 - Vo Kim Long
+# E-Commerce Web Application
 
-# Midterm Project - Java Technology
+### 👤 Vo Kim Long - 52200226
 
-# E-Commerce Web Application (ReactJS + Spring Boot)
+### 📚 Java Technology - Midterm Project
 
-## 1. Introduction
+---
 
-- E-Commerce web application built with **ReactJS**, **Spring Boot**, and **PostgreSQL** (via Supabase).
-- Key features: Product browsing, detailed view, cart management, and advanced filtering.
-- Two main actors:
-  - **Customers**: Browse products, view details, filter, and place orders.
-  - **Admin**: Manage products, orders, and customers.
+## 📌 Overview
 
-## 2. Tech Stack
+A full-stack e-commerce platform built using **ReactJS**, **Spring Boot**, and **PostgreSQL** (Supabase). The application supports:
 
-- **Frontend**: ReactJS, Redux Toolkit, React Router, Axios, TailwindCSS.
-- **Backend**: Spring Boot, Spring Data JPA, Spring MVC, Spring Security, Lombok.
-- **Database**: PostgreSQL (Supabase).
-- **Authentication**: JWT.
-- **Testing**: JUnit, Mockito.
+- 🔍 Product browsing & filtering
+- 🛒 Cart & order management
+- 🔐 JWT-based authentication
+- 🌐 Google OAuth integration
+- 🛠 Admin dashboard for managing products, users, and orders
 
-## 3. System Design
+---
 
-### 3.1. Use Case Diagram
+## 🛠 Tech Stack
 
-![Use Case Diagram](snapshot/MainUseCase.jpg)
+- **Frontend**: ReactJS, Redux Toolkit, Axios, TailwindCSS
+- **Backend**: Spring Boot, Spring Data JPA, Spring Security, Lombok
+- **Database**: PostgreSQL (Supabase)
+- **Authentication**: JWT, Google OAuth
+- **Testing**: JUnit, Mockito
 
-### 3.2. ERD (Entity Relationship Diagram)
+---
 
-![ERD](snapshot/ERD.jpg)
+## 📐 Architecture & Design
 
-### 3.3. Database Schema
+- **MVC Pattern** with layered architecture (Controller → Service → Repository)
+- **RESTful API** communication between frontend and backend
+- **SOLID principles**, clean code & separation of concerns
 
-![Database Schema](snapshot/DBSchema.jpg)
+### Diagrams
 
-## 4. Software Development Principles
+- ![Use Case Diagram](snapshot/MainUseCase.jpg)
+- ![ERD](snapshot/ERD.jpg)
+- ![Database Schema](snapshot/DBSchema.jpg)
 
-- Applied **SOLID principles** for maintainability and scalability.
-- Implemented **Separation of Concerns (SoC)** across layers (Controller, Service, Repository).
-- Followed the **Waterfall methodology** for a sequential and structured development process.
+---
 
-## 5. Architecture and Design Patterns
+## 🚀 Getting Started
 
-- Adopted **MVC** for application structure, with **Controller** handling requests.
-- Implemented **RESTful API** for efficient and structured communication between services.
-- Applied **Dependency Injection** to reduce coupling between components.
+```bash
+# Clone the repository
+git clone https://github.com/LongKim11/E-Commerce-ReactJS-Spring-Boot
 
-## 6. Development Practices
+# Start Frontend
+cd frontend
+npm install
+npm run dev
 
-- Followed **clean code** principles for readability and maintainability.
-- Implemented **layered architecture** for modularity and separation of concerns.
-- Wrote **unit tests** to ensure software quality and reliability.
+# Start Backend
+cd backend/proathlete
+./mvnw clean package # or use your IDE to build the project
+java -jar target/<your-app>.jar
+```
 
-## 7. Code Structure
+> Replace `<your-app>.jar` with the actual JAR file name (e.g., `proathlete-0.0.1-SNAPSHOT.jar`).
 
-### 7.1 Backend
+Or run with Docker:
 
-- **`src/`**: Source code directory.
-  - **`main/`**: Main application source code.
-    - **`java/com/longkimvo/proathlete/`**: Main Java package.
-      - **`auth/`**: Authentication-related classes.
-      - **`config/`**: Application configuration files.
-      - **`controllers/`**: REST API controllers.
-      - **`dto/`**: Data Transfer Objects for request/response.
-      - **`entities/`**: JPA entities representing database tables.
-      - **`enums/`**: Enumerations used in the application.
-      - **`exceptions/`**: Custom exception classes.
-      - **`repositories/`**: Spring Data JPA repositories for database interaction.
-      - **`services/`**: Business logic implementations.
-    - **`resources/`**: Application resources (e.g., properties, static files).
-  - **`test/`**: Unit tests for the application.
+```bash
+docker build -t proathlete-backend .
+docker run -p 8080:8080 proathlete-backend
+```
 
-### 7.2 Frontend
+---
 
-- **`public/`**: Holds static assets served directly by the web server (e.g., images, fonts).
-- **`src/`**: Main source code directory.
-  - **`api/`**: Handles API interactions and data fetching.
-  - **`assets/`**: Contains static assets used by the application (e.g., images, icons).
-  - **`components/`**: Reusable UI components.
-  - **`data/`**: Stores local or static data.
-  - **`layout/`**: Defines the overall structure and common elements of pages.
-  - **`pages/`**: Contains individual application views or screens.
-  - **`services/`**: Implements business logic and often interacts with the `api` layer.
-  - **`store/`**: Manages the application's state (React Redux).
-  - **`utils/`**: Utility functions and helper methods.
-  - **`index.css`**: Global CSS styles.
-  - **`main.jsx`**: Entry point of the application.
-  - **`routes.jsx`**: Defines application routes and navigation.
+## 📂 Project Structure
+
+### Backend: `backend/proathlete`
+
+- `auth/`: Authentication and authorization logic (JWT, OAuth)
+- `controllers/`: REST API endpoints
+- `services/`: Business logic
+- `repositories/`: JPA Repositories for DB interaction
+- `dto/`: Data transfer objects
+- `entities/`: JPA entity classes
+- `config/`: App configuration (swagger,...)
+- `exceptions/`: Custom exceptions
+- `enums/`: Enum types used in the app
+
+### Frontend: `frontend`
+
+- `components/`: Reusable UI elements
+- `pages/`: Main views/screens of the app
+- `api/`: API call functions
+- `services/`: Business logic & data handling
+- `store/`: Redux Toolkit store and slices
+- `layout/`: Common layout components (Navbar, Footer, etc.)
+- `utils/`: Utility functions
+
+---
+
+## 📬 API Testing (Postman)
+
+Screenshots for major API requests & responses:
+
+- ![getAllProducts](snapshot/getAllProducts.jpg)
+- ![getProductByID](snapshot/getProductByID.jpg)
+- ![getProductByGender](snapshot/getProductByGender.jpg)
+- ![addNewProduct](snapshot/addNewProduct.jpg)
+- ![deleteProduct](snapshot/deleteProduct.jpg)
+- ![getAllCategories](snapshot/getAllCategories.jpg)
+- ![addNewCategory](snapshot/addNewCategory.jpg)
+- ![signIn](snapshot/login.jpg)
+- ![addNewAddress](snapshot/addNewAddress.jpg)
+- ![createOrder](snapshot/createOrder.jpg)
+- ![getAllOrders](snapshot/getAllOrders.jpg)
+- ![getOrderByUser](snapshot/getOrderByUser.jpg)
+- ![updateOrderDeliveryStatus](snapshot/updateOrderDeliveryStatus.jpg)
+- ![getUserDetails](snapshot/getUserDetails.jpg)
+
+---
+
+## 🎯 Key Highlights
+
+- 🧩 Modular, reusable component-based UI
+- 🧠 State management with Redux Toolkit
+- 📦 JWT & OAuth-secured API endpoints
+- ✅ Unit testing with JUnit & Mockito

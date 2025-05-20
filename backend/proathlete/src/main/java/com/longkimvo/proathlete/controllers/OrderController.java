@@ -59,6 +59,6 @@ public class OrderController {
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateOrderDeliveryStatus(@PathVariable UUID id, @RequestBody OrderDeliveryStatusRequest orderDeliveryStatusRequest) {
         Order updatedOrder = orderService.updateOrderDeliveryStatus(id, orderDeliveryStatusRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }
 }
