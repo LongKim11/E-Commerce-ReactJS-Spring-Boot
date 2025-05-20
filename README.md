@@ -60,7 +60,7 @@ Watch the recorded presentation here:
 
 ```bash
 # Clone the repository
-git clone https://github.com/LongKim11/E-Commerce-ReactJS-Spring-Boot
+git clone https://github.com/LongKim11/ProAthlete-E-Commerce-Shop
 
 # Start Frontend
 cd frontend
