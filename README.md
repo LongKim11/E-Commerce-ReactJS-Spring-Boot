@@ -18,6 +18,12 @@ A full-stack e-commerce platform built using **ReactJS**, **Spring Boot**, and *
 
 ---
 
+## 🎥 Presentation
+
+Watch the recorded presentation here:
+
+---
+
 ## 🛠 Tech Stack
 
 - **Frontend**: ReactJS, Redux Toolkit, Axios, TailwindCSS
