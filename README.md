@@ -1,4 +1,4 @@
-# E-Commerce Web Application
+# 🛍️ E-Commerce Web Application
 
 ### 👤 Vo Kim Long - 52200226
 
