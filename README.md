@@ -36,9 +36,17 @@ A full-stack e-commerce platform built using **ReactJS**, **Spring Boot**, and *
 
 ### Diagrams
 
-- ![Use Case Diagram](snapshot/MainUseCase.jpg)
-- ![ERD](snapshot/ERD.jpg)
-- ![Database Schema](snapshot/DBSchema.jpg)
+#### 🧩 Use Case Diagram
+
+![Use Case Diagram](snapshot/MainUseCase.jpg)
+
+#### 🗂 Entity Relationship Diagram (ERD)
+
+![ERD](snapshot/ERD.jpg)
+
+#### 🧱 Database Schema
+
+![Database Schema](snapshot/DBSchema.jpg)
 
 ---
 
@@ -80,7 +88,7 @@ docker run -p 8080:8080 proathlete-backend
 - `repositories/`: JPA Repositories for DB interaction
 - `dto/`: Data transfer objects
 - `entities/`: JPA entity classes
-- `config/`: App configuration (swagger,...)
+- `config/`: App configuration (security, CORS, etc.)
 - `exceptions/`: Custom exceptions
 - `enums/`: Enum types used in the app
 
@@ -100,26 +108,58 @@ docker run -p 8080:8080 proathlete-backend
 
 Screenshots for major API requests & responses:
 
-- ![getAllProducts](snapshot/getAllProducts.jpg)
-- ![getProductByID](snapshot/getProductByID.jpg)
-- ![getProductByGender](snapshot/getProductByGender.jpg)
-- ![addNewProduct](snapshot/addNewProduct.jpg)
-- ![deleteProduct](snapshot/deleteProduct.jpg)
-- ![getAllCategories](snapshot/getAllCategories.jpg)
-- ![addNewCategory](snapshot/addNewCategory.jpg)
-- ![signIn](snapshot/login.jpg)
-- ![addNewAddress](snapshot/addNewAddress.jpg)
-- ![createOrder](snapshot/createOrder.jpg)
-- ![getAllOrders](snapshot/getAllOrders.jpg)
-- ![getOrderByUser](snapshot/getOrderByUser.jpg)
-- ![updateOrderDeliveryStatus](snapshot/updateOrderDeliveryStatus.jpg)
-- ![getUserDetails](snapshot/getUserDetails.jpg)
+#### 📦 Get All Products
 
----
+![getAllProducts](snapshot/getAllProducts.jpg)
 
-## 🎯 Key Highlights
+#### 🔍 Get Product By ID
 
-- 🧩 Modular, reusable component-based UI
-- 🧠 State management with Redux Toolkit
-- 📦 JWT & OAuth-secured API endpoints
-- ✅ Unit testing with JUnit & Mockito
+![getProductByID](snapshot/getProductByID.jpg)
+
+#### 👕 Get Product By Gender
+
+![getProductByGender](snapshot/getProductByGender.jpg)
+
+#### ➕ Add New Product
+
+![addNewProduct](snapshot/addNewProduct.jpg)
+
+#### ❌ Delete Product
+
+![deleteProduct](snapshot/deleteProduct.jpg)
+
+#### 🗂 Get All Categories
+
+![getAllCategories](snapshot/getAllCategories.jpg)
+
+#### ➕ Add New Category
+
+![addNewCategory](snapshot/addNewCategory.jpg)
+
+#### 🔑 Sign in
+
+![signIn](snapshot/login.jpg)
+
+#### 🏠 Add New Address
+
+![addNewAddress](snapshot/addNewAddress.jpg)
+
+#### 🛒 Create Order
+
+![createOrder](snapshot/createOrder.jpg)
+
+#### 📦 Get All Orders
+
+![getAllOrders](snapshot/getAllOrders.jpg)
+
+#### 👤 Get Order by User
+
+![getOrderByUser](snapshot/getOrderByUser.jpg)
+
+#### 🚚 Update Order Delivery Status
+
+![updateOrderDeliveryStatus](snapshot/updateOrderDeliveryStatus.jpg)
+
+#### 👥 Get User Details
+
+![getUserDetails](snapshot/getUserDetails.jpg)
