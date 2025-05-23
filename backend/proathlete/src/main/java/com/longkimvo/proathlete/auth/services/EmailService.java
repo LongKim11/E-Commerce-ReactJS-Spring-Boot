@@ -33,9 +33,9 @@ public class EmailService {
             mailMessage.setSubject(subject);
 
             javaMailSender.send(mailMessage);
+            return "Email sent!";
         } catch (Exception e) {
             return "Error while sending mail";
         }
-        return "Email sent!";
     }
 }

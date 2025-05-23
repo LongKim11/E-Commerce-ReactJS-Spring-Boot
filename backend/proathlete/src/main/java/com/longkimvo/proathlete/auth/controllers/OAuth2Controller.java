@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -56,9 +57,10 @@ public class OAuth2Controller {
             logger.info("Creating new user for email: {}", username);
             user = oAuth2Service.createUser(oAuth2User, "google");
         }
+        logger.info("User authorities: {}", user.getAuthorities());
 
         List<String> roles = user.getAuthorities().stream()
-                .map(authority -> authority.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .toList();
 
         String token = jwtTokenHelper.generateToken(user.getEmail(), roles);

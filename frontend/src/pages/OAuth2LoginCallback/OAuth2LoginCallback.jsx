@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { saveToken } from "../../utils/jwt-helper";
+import { saveToken, authorize } from "../../utils/jwt-helper";
 
 export const OAuth2LoginCallback = () => {
   const navigate = useNavigate();
@@ -11,7 +11,11 @@ export const OAuth2LoginCallback = () => {
 
     if (token) {
       saveToken(token);
-      navigate("/");
+      if (authorize(token).includes("ADMIN")) {
+        navigate("/admin/dashboard");
+      } else if (authorize(token).includes("USER")) {
+        navigate("/");
+      }
     } else {
       navigate("/auth/login");
     }

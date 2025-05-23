@@ -11,6 +11,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,8 +81,9 @@ public class WebSecurityConfig {
                 user = oAuth2Service.createUser(oAuth2User, "google");
             }
 
-            List<String> roles = new ArrayList<>();
-            roles.add("USER");
+            List<String> roles = user.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList();
 
             String token = jwtTokenHelper.generateToken(user.getEmail(), roles);
 
